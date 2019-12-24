@@ -59,7 +59,10 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new MapsActivity()).commit();
                 break;
-
+            case R.id.nav_buy:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new buyFragment()).commit();
+                break;
             case R.id.nav_share:
                 Toast.makeText(this,"IT is shared", Toast.LENGTH_SHORT).show();
         }

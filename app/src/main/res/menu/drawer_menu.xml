@@ -9,8 +9,12 @@
             android:title="About" />
         <item
             android:id="@+id/nav_map"
-            android:icon="@drawable/ic_map_black_24dp"
+            android:icon="@drawable/ic_launcher_background"
             android:title="Location" />
+        <item
+            android:id="@+id/nav_buy"
+            android:icon="@drawable/ic_shop_black_24dp"
+            android:title="Buy" />
     </group>
     <item android:title="Communicate">
         <menu>
