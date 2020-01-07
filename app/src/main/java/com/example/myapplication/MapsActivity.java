@@ -50,7 +50,7 @@ public class MapsActivity extends Fragment {
 
 
                 // For dropping a marker at a point on the Map
-                LatLng location = new LatLng(53.796833, -1.732593);
+                LatLng location = new LatLng(55, -1.732593);
                 googleMap.addMarker(new MarkerOptions().position(location).title("Marker Title").snippet("Marker Description"));
 
                 // For zooming automatically to the location of the marker
