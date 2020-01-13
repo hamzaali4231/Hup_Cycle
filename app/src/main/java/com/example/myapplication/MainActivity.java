@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
         if (savedInstanceState==null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new aboutFragment()).commit();
+                    new login()).commit();
             navigationView.setCheckedItem(R.id.nav_about);
         }
     }
@@ -53,6 +53,10 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()){
+            case R.id.nav_login:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new login()).commit();
+                break;
             case R.id.nav_about:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new aboutFragment()).commit();
@@ -70,10 +74,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new CartFragment()).commit();
                 break;
-            case R.id.nav_login:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new login()).commit();
-                break;
+
             case R.id.nav_share:
                 Toast.makeText(this,"IT is shared", Toast.LENGTH_SHORT).show();
         }
