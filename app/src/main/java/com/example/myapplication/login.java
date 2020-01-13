@@ -29,80 +29,76 @@ public class login extends Fragment {
     private EditText useName;
     private EditText Password;
     private EditText Register;
-    private Button login;
-    private static final String FILE_Name="LogIn.txt";
+    Button loginb;
+    private static final String FILE_Name = "LogIn.txt";
 
-    @Nullable
+
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(activity_login,container,false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View rootView = inflater.inflate(activity_login, container, false);
 
 
-        final Button loginb = (Button) findViewById(R.id.login);
-        useName = (EditText) findViewById(R.id.editText2);
-        Password = (EditText) findViewById(R.id.editText3);
+        Button loginb = rootView.findViewById(R.id.login);
+        useName = (EditText) rootView.findViewById(R.id.editText2);
+        Password = (EditText) rootView.findViewById(R.id.editText3);
         loginb.setOnClickListener(new View.OnClickListener() {
-                                      public void onClick(View v) {
-                                          System.out.println("fewvfsdbjkfh");
-                                          try {
-                                              loginbtn();
-                                          } catch (IOException e) {
-                                              e.printStackTrace();
-                                          }
-                                      }
-
-
-
-
-    public void loginbtn() throws IOException {
-        File file = new File("app/LogIn");
-        FileInputStream fstream = new FileInputStream(file);
-        BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
-
-        String strLine;
-        String userName;
-        String password;
-        while ((strLine = br.readLine()) != null) {
-            // Print the content on the console
-            //System.out.println (strLine);
-            String[] namesList = strLine.split(",");
-
-            userName = namesList[0];
-            password = namesList[2];
-            if (userName.trim().equals(useName.getText()) && !password.trim().equals(Password.getText())) {
-               final AlertDialog.Builder builder = new AlertDialog.Builder(com.example.myapplication.login.this);
-               builder.setTitle("Confirmation?");
-               builder.setMessage("User or pass wrong");
-               builder.setPositiveButton("ok", new DialogInterface.OnClickListener(){
-                   @Override
-                   public void onClick(DialogInterface dialog, int which) {
-                       dialog.dismiss();
-                   }
-               });
-               AlertDialog dialog= builder.create();
-               dialog.show();
-
-
-        }
-            else if(password.trim().equals(Password.getText()) && userName.trim().equals(useName.getText()))
-            {
-                final AlertDialog.Builder builder = new AlertDialog.Builder(com.example.myapplication.login.this);
-                builder.setTitle("Confirmation?");
-                builder.setMessage("User or pass matched");
-                builder.setPositiveButton("ok", new DialogInterface.OnClickListener(){
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-                AlertDialog dialog= builder.create();
-                dialog.show();
-
-
-
+            public void onClick(View v) {
+                System.out.println("fewvfsdbjkfh");
+                try {
+                    loginbtn();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
-}
-}
-});
-}
+
+
+            public void loginbtn() throws IOException {
+                File file = new File("app/LogIn");
+                FileInputStream fstream = new FileInputStream(file);
+                BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
+
+                String strLine;
+                String userName;
+                String password;
+                while ((strLine = br.readLine()) != null) {
+                    // Print the content on the console
+                    //System.out.println (strLine);
+                    String[] namesList = strLine.split(",");
+
+                    userName = namesList[0];
+                    password = namesList[2];
+                    if (userName.trim().equals(useName.getText()) && !password.trim().equals(Password.getText())) {
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                        builder.setTitle("Confirmation?");
+                        builder.setMessage("User or pass wrong");
+                        builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+
+
+                    } else if (password.trim().equals(Password.getText()) && userName.trim().equals(useName.getText())) {
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                        builder.setTitle("Confirmation?");
+                        builder.setMessage("User or pass matched");
+                        builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+
+
+                    }
+                }
+            }
+        });
+        return rootView;
+    }
 }
