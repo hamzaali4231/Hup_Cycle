@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class AdminAddItem extends AppCompatActivity {
 
-    private ImageView furniture, jewellery, clothes;
+    private ImageView item1, item2, item3;
 
 
     @Override
