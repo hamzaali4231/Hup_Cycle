@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "36612992480",
+    "firebase_url": "https://hup-cycle.firebaseio.com",
+    "project_id": "hup-cycle",
+    "storage_bucket": "hup-cycle.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:36612992480:android:0bfd74e0adfd41b2888f85",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "36612992480-1qpvki9q6letprtb1j1e9omv10obrig0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.myapplication",
+            "certificate_hash": "03dbedd08d07f19665cde533195a70af36dc2055"
+          }
+        },
+        {
+          "client_id": "36612992480-06jjv375atnko2hljip23f16fo4va301.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCS1lRYG6tg0hVJ4iqJ7gzDJ0L2w-nkNX0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "36612992480-06jjv375atnko2hljip23f16fo4va301.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -2,19 +2,15 @@ package com.example.myapplication;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -37,18 +33,23 @@ public class login extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(activity_login, container, false);
 
-
         Button loginb = rootView.findViewById(R.id.login);
         useName = (EditText) rootView.findViewById(R.id.editText2);
         Password = (EditText) rootView.findViewById(R.id.editText3);
         loginb.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 System.out.println("fewvfsdbjkfhkjhjhjhjkh");
-                try {
-                    loginbtn();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+
+//                try {
+
+
+                    Intent intent = new Intent(getActivity(),AdminCategory.class);
+                    startActivity(intent);
+
+
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
             }
 
 
@@ -75,6 +76,8 @@ public class login extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
+                                Intent intent = new Intent(getActivity(),AdminCategory.class);
+                                startActivity(intent);
                             }
                         });
                         AlertDialog dialog = builder.create();
@@ -88,14 +91,16 @@ public class login extends Fragment {
                         builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
+//                                dialog.dismiss();
+
                             }
-                        });
-                        AlertDialog dialog = builder.create();
-                        dialog.show();
+
+                        }
+                        );
 
 
                     }
+
                 }
             }
         });
