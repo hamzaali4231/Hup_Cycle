@@ -48,11 +48,11 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         drawerLayout= findViewById(R.id.drawer_layout);
 
         NavigationView navigationView = findViewById(R.id.nav_view);
-       navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setNavigationItemSelectedListener(this);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout,toolbar,
                 R.string.navigation_drawer_open,R.string.navigation_drawer_close);
-      drawerLayout.addDrawerListener(toggle);
+        drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
         if (savedInstanceState==null) {
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
         FirebaseRecyclerOptions <Products> options =
                 new FirebaseRecyclerOptions.Builder<Products>().setQuery(productDatabaseReference,Products.class)
-                .build();
+                        .build();
 
         FirebaseRecyclerAdapter <Products, ProductViewHolder> adapter = new
                 FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
@@ -114,7 +114,12 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         adapter.startListening();
 
 
+//        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+//                new login()).commit();
+//        navigationView.setCheckedItem(R.id.nav_about);
+//>>>>>>> Stashed changes
     }
+
 
     @Override
     public void onBackPressed() {
@@ -122,8 +127,8 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         if (drawerLayout.isDrawerOpen(GravityCompat.START)){
             drawerLayout.closeDrawer(GravityCompat.START);
         }else{
-        super.onBackPressed();
-    }}
+            super.onBackPressed();
+        }}
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -158,7 +163,5 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         return true;
     }
 
-
-
-
 }
+
