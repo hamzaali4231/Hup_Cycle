@@ -15,7 +15,7 @@ public class SplashScreen extends AppCompatActivity implements Runnable{
     private final static int Delay=5000;
 
 
-    Animation topAnimation, bottomAnimation;
+    Animation topAnimation;
 
     ImageView image;
 
@@ -28,8 +28,8 @@ public class SplashScreen extends AppCompatActivity implements Runnable{
 
         Handler splashHandler= new Handler();
         splashHandler.postDelayed(this,Delay);
-        //Animations for splash screen
 
+        //Animations for splash screen
         image = findViewById(R.id.logo);
         topAnimation = AnimationUtils.loadAnimation(this,R.anim.top_animation_splash);
         image.startAnimation(topAnimation);
@@ -39,7 +39,6 @@ public class SplashScreen extends AppCompatActivity implements Runnable{
     @Override
     public void run() {
         Intent splashIntent = new Intent(SplashScreen.this, MainActivity.class);
-
         startActivity(splashIntent);
        finish();
     }
