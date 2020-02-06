@@ -30,9 +30,7 @@ public class SplashScreen extends AppCompatActivity implements Runnable{
         splashHandler.postDelayed(this,Delay);
         //Animations for splash screen
 
-        bottomAnimation = AnimationUtils.loadAnimation(this,R.anim.bottom_animation_splash);
-
-        image = (ImageView) findViewById(R.id.logo);
+        image = findViewById(R.id.logo);
         topAnimation = AnimationUtils.loadAnimation(this,R.anim.top_animation_splash);
         image.startAnimation(topAnimation);
 
