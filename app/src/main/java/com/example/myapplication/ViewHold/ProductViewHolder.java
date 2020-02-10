@@ -3,10 +3,8 @@ package com.example.myapplication.ViewHold;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.myapplication.Interface.ItemClickListener;
 import com.example.myapplication.R;
-
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,7 +24,7 @@ public class ProductViewHolder extends RecyclerView.ViewHolder implements View.O
         productDescription = (TextView) itemView.findViewById(R.id.product_description);
         productPrice = (TextView) itemView.findViewById(R.id.product_price);
         cardView = (CardView) itemView.findViewById(R.id.cv_id);
-//     cardView.setCardElevation(0);
+//      cardView.setCardElevation(0);
 
 
     }

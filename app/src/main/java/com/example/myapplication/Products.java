@@ -2,13 +2,13 @@ package com.example.myapplication;
 
 public class Products {
 
-    private String name,description, price, image, category, date, pid, time;
+    private String name,description, price, image, category, date, id, time;
 
     public Products(){
 
     }
 
-    public Products(String name, String description, String price, String pid, String image, String category, String date, String time) {
+    public Products(String name, String description, String price, String id, String image, String category, String date, String time) {
         this.name = name;
         this.description = description;
         this.price = price;
@@ -16,16 +16,17 @@ public class Products {
         this.category = category;
         this.date = date;
         this.time = time;
-        this.pid=pid;
+        this.id=id;
 
     }
 
-    public String getPid() {
-        return pid;
+
+    public String getId() {
+        return id;
     }
 
-    public void setPid(String pid) {
-        this.pid = pid;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {

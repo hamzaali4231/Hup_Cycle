@@ -97,8 +97,8 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
                             @Override
                             public void onClick(View v) {
 
-                                Intent intent = new Intent(MainActivity.this, PorductDetailsActivity.class);
-                                intent.putExtra("pid",model.getPid());
+                                Intent intent = new Intent(MainActivity.this, ProductDetailsActivity.class);
+                                intent.putExtra("id",model.getId());
                                 startActivity(intent);
                             }
                         });
@@ -159,7 +159,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
                 break;
             case R.id.nav_cart:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new CartFragment()).commit();
+                        new CartActivity()).commit();
                 break;
 
             case R.id.nav_share:
