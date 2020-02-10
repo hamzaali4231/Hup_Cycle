@@ -14,7 +14,6 @@ public class SplashScreen extends AppCompatActivity implements Runnable{
 
     private final static int Delay=5000;
 
-
     Animation topAnimation;
 
     ImageView image;

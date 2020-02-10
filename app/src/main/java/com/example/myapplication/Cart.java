@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 public class Cart {
+
     private String date, id, name, price, quantity, time;
 
     public Cart(String date, String id, String name, String price, String quantity, String time) {
