@@ -1,6 +1,9 @@
 package com.example.myapplication.ViewHold;
 
+import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.myapplication.Interface.ItemClickListener;
@@ -28,6 +31,7 @@ public class ProductViewHolder extends RecyclerView.ViewHolder implements View.O
 
 
     }
+
 
     public void setItemClickListener(ItemClickListener listener){
 
