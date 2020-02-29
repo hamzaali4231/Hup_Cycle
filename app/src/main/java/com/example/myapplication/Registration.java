@@ -1,10 +1,7 @@
 package com.example.myapplication;
 
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,18 +15,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthException;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.Objects;
 
 import static com.example.myapplication.R.layout.activity_login;
 
@@ -83,7 +71,7 @@ public class Registration extends Fragment {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
                             Toast.makeText(getActivity(), "User Created", Toast.LENGTH_SHORT).show();
-                            startActivity( new Intent(getContext(), login.class));
+                            startActivity( new Intent(getContext(), Login.class));
                         } else  {
                             Toast.makeText(getActivity(), "Error occured" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }

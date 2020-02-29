@@ -15,10 +15,6 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 import com.example.myapplication.ViewHold.ProductViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -63,7 +59,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
         if (savedInstanceState==null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new login()).commit();
+                    new Login()).commit();
             navigationView.setCheckedItem(R.id.nav_about);
         }
 
@@ -121,7 +117,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
 
 //        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-//                new login()).commit();
+//                new Login()).commit();
 //        navigationView.setCheckedItem(R.id.nav_about);
 //>>>>>>> Stashed changes
     }
@@ -141,7 +137,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         switch (menuItem.getItemId()){
             case R.id.nav_login:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new login()).commit();
+                        new Login()).commit();
                 break;
             case R.id.nav_about:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,

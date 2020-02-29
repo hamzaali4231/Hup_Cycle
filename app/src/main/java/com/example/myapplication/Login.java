@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
@@ -23,16 +24,16 @@ import java.util.Objects;
 
 import static com.example.myapplication.R.layout.activity_login;
 
-public class login extends Fragment {
+public class Login extends Fragment {
 
 
     private EditText useName;
-    private EditText Password;
-    private EditText Register;
+    private EditText password;
+    private TextView register;
     Button loginb;
     private static final String FILE_Name = "Login.txt";
     final static String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/instinctcoder/readwrite/" ;
-    final static String TAG = login.class.getName();
+    final static String TAG = Login.class.getName();
 
 
     @Override
@@ -42,7 +43,17 @@ public class login extends Fragment {
 
         Button loginb = rootView.findViewById(R.id.login);
         useName = (EditText) rootView.findViewById(R.id.usernameField);
-        Password = (EditText) rootView.findViewById(R.id.confirmPasswordField);
+        password = (EditText) rootView.findViewById(R.id.confirmPasswordField);
+        register = (TextView) rootView.findViewById(R.id.registerTextview);
+
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), Registration.class);
+                startActivity(intent);
+            }
+        });
+
         loginb.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             public void onClick(View v) {
@@ -53,12 +64,11 @@ public class login extends Fragment {
                 }
             }
 
-
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             public void loginbtn() throws IOException {
 
-                // File file = new File("login.txt");
-                //  FileInputStream fstream = new FileInputStream("login");
+                // File file = new File("Login.txt");
+                //  FileInputStream fstream = new FileInputStream("Login");
                 InputStream inputStream = getContext().getAssets().open("login");
                 BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
 
@@ -78,7 +88,7 @@ public class login extends Fragment {
                         System.out.println(password);
                         System.out.println(strLine);
 
-                        if (userName.trim().contentEquals(useName.getText()) && !password.trim().contentEquals(Password.getText())) {
+                        if (userName.trim().contentEquals(useName.getText()) && !password.trim().contentEquals(Login.this.password.getText())) {
 
                             System.out.print("shuy up");
                             final AlertDialog.Builder builder = new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
@@ -95,7 +105,7 @@ public class login extends Fragment {
                             dialog.show();
 
 
-                        } else if (password.trim().contentEquals(Password.getText()) && userName.trim().contentEquals(useName.getText())) {
+                        } else if (password.trim().contentEquals(Login.this.password.getText()) && userName.trim().contentEquals(useName.getText())) {
                             final AlertDialog.Builder builder = new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
                             builder.setTitle("Confirmation?");
                             builder.setMessage("User or pass matched");
