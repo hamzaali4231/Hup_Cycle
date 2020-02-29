@@ -41,8 +41,8 @@ public class login extends Fragment {
 
 
         Button loginb = rootView.findViewById(R.id.login);
-        useName = (EditText) rootView.findViewById(R.id.editText2);
-        Password = (EditText) rootView.findViewById(R.id.editText3);
+        useName = (EditText) rootView.findViewById(R.id.usernameField);
+        Password = (EditText) rootView.findViewById(R.id.confirmPasswordField);
         loginb.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             public void onClick(View v) {
