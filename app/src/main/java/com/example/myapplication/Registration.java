@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -17,11 +18,14 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import static com.example.myapplication.R.layout.activity_login;
+import static com.example.myapplication.R.layout.activity_registration;
 
-public class Registration extends Fragment {
+public class Registration extends AppCompatActivity {
 
 
     private EditText username, pass, confirmPass;
@@ -30,18 +34,17 @@ public class Registration extends Fragment {
 
     FirebaseAuth fAuth;
 
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(activity_login, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-        username = (EditText) rootView.findViewById(R.id.usernameField);
-        pass = (EditText) rootView.findViewById(R.id.passwordField);
-        confirmPass = (EditText) rootView.findViewById(R.id.confirmPasswordField);
-        register = rootView.findViewById(R.id.registerButton);
+        username = (EditText) findViewById(R.id.usernameField);
+        pass = (EditText) findViewById(R.id.passwordField);
+        confirmPass = (EditText) findViewById(R.id.confirmPasswordField);
+        register = (Button) findViewById(R.id.registerButton);
 
         fAuth = FirebaseAuth.getInstance();
-        progressBar = rootView.findViewById(R.id.progressRegBar);
+        progressBar = (ProgressBar) findViewById(R.id.progressRegBar);
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,16 +73,14 @@ public class Registration extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
-                            Toast.makeText(getActivity(), "User Created", Toast.LENGTH_SHORT).show();
-                            startActivity( new Intent(getContext(), Login.class));
+                            Toast.makeText(Registration.this, "User Created", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), Login.class));
                         } else  {
-                            Toast.makeText(getActivity(), "Error occured" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Registration.this, "Error occured" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
             }
         });
-
-        return rootView;
     }
 }

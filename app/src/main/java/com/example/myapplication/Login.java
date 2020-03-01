@@ -47,9 +47,9 @@ public class Login extends Fragment {
         register = (TextView) rootView.findViewById(R.id.registerTextview);
 
         register.setOnClickListener(new View.OnClickListener() {
-            @Override
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), Registration.class);
+                Intent intent = new Intent(getActivity(), Registration.class);
                 startActivity(intent);
             }
         });
