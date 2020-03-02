@@ -47,7 +47,7 @@ public class Login extends Fragment {
         register = (TextView) rootView.findViewById(R.id.registerTextview);
 
         register.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+           // @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), Registration.class);
                 startActivity(intent);
@@ -55,7 +55,6 @@ public class Login extends Fragment {
         });
 
         loginb.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             public void onClick(View v) {
                 try {
                     loginbtn();
@@ -64,7 +63,6 @@ public class Login extends Fragment {
                 }
             }
 
-            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             public void loginbtn() throws IOException {
 
                 // File file = new File("Login.txt");

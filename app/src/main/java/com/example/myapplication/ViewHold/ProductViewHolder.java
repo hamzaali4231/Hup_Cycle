@@ -27,7 +27,7 @@ public class ProductViewHolder extends RecyclerView.ViewHolder implements View.O
         productDescription = (TextView) itemView.findViewById(R.id.product_description);
         productPrice = (TextView) itemView.findViewById(R.id.product_price);
         cardView = (CardView) itemView.findViewById(R.id.cv_id);
-//      cardView.setCardElevation(0);
+         cardView.setCardElevation(-5);
 
 
     }
