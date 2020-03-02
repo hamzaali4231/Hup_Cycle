@@ -37,6 +37,7 @@ public class Registration extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_registration);
 
         username = (EditText) findViewById(R.id.usernameField);
         pass = (EditText) findViewById(R.id.passwordField);
@@ -46,7 +47,8 @@ public class Registration extends AppCompatActivity {
         fAuth = FirebaseAuth.getInstance();
         progressBar = (ProgressBar) findViewById(R.id.progressRegBar);
 
-        register.setOnClickListener(new View.OnClickListener() {
+
+       register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String userName = username.getText().toString().trim();
