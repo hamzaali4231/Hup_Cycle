@@ -1,127 +1,86 @@
 package com.example.myapplication;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.Fragment;
-import java.io.BufferedReader;
+import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.Objects;
 
-import static com.example.myapplication.R.layout.activity_login;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class Login extends Fragment {
-
-
-    private EditText useName;
+public class Login extends AppCompatActivity {
+    private EditText userName;
     private EditText password;
     private TextView register;
     Button loginb;
-    private static final String FILE_Name = "Login.txt";
-    final static String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/instinctcoder/readwrite/" ;
-    final static String TAG = Login.class.getName();
 
-
+    DatabaseReference databaseReference;
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(activity_login, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
 
-        Button loginb = rootView.findViewById(R.id.login);
-        useName = (EditText) rootView.findViewById(R.id.usernameField);
-        password = (EditText) rootView.findViewById(R.id.confirmPasswordField);
-        register = (TextView) rootView.findViewById(R.id.registerTextview);
+        Button loginb = findViewById(R.id.login);
+        userName = (EditText) findViewById(R.id.usernameField);
+        password = (EditText) findViewById(R.id.confirmPasswordField);
+        register = (TextView) findViewById(R.id.registerTextview);
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), Registration.class);
+                Intent intent = new Intent(getApplicationContext(), Registration.class);
                 startActivity(intent);
             }
         });
 
         loginb.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
-                try {
-                    loginbtn();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                logIn(userName.getText().toString(), password.getText().toString());
+            }
+        });
+    }
+
+    private void logIn(final String username,final String password) {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.child(username).exists()){
+                    if (username.isEmpty()){
+                        User user=dataSnapshot.child(username).getValue(User.class);
+                        if (user.getPassword().equals(password)){
+                            Toast.makeText(Login.this,"Login Success",Toast.LENGTH_LONG).show();
+                            Intent intphto =new Intent(getApplicationContext(),AdminAddNewItem.class);
+                            startActivity(intphto);
+                        }else {
+                            Toast.makeText(Login.this,"Password is Incorrect",Toast.LENGTH_LONG).show();
+                        }
+                    }else {
+                        Toast.makeText(Login.this,"User is not registered",Toast.LENGTH_LONG).show();
+                    }
+
+                }else {
+                    Toast.makeText(Login.this,"User is not registered",Toast.LENGTH_LONG).show();
                 }
             }
 
-            public void loginbtn() throws IOException {
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                // File file = new File("Login.txt");
-                //  FileInputStream fstream = new FileInputStream("Login");
-                InputStream inputStream = getContext().getAssets().open("login");
-                BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
-
-                String strLine;
-                String userName;
-                String password;
-                if (inputStream != null) {
-                    while ((strLine = br.readLine()) != null) {
-                        // Print the content on the console
-                        System.out.println ("wrong passowrd");
-                        String[] namesList = strLine.split(",");
-
-                        userName = namesList[0];
-                        password = namesList[2];
-
-                        System.out.println(userName);
-                        System.out.println(password);
-                        System.out.println(strLine);
-
-                        if (userName.trim().contentEquals(useName.getText()) && !password.trim().contentEquals(Login.this.password.getText())) {
-
-                            System.out.print("shuy up");
-                            final AlertDialog.Builder builder = new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
-
-                            builder.setTitle("Confirmation?");
-                            builder.setMessage("User or pass wrong");
-                            builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.dismiss();
-                                }
-                            });
-                            AlertDialog dialog = builder.create();
-                            dialog.show();
-
-
-                        } else if (password.trim().contentEquals(Login.this.password.getText()) && userName.trim().contentEquals(useName.getText())) {
-                            final AlertDialog.Builder builder = new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
-                            builder.setTitle("Confirmation?");
-                            builder.setMessage("User or pass matched");
-                            builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.dismiss();
-                                    Intent intent = new Intent(getActivity(),AdminCategory.class);
-                                    startActivity(intent);
-                                }
-                            });
-                            AlertDialog dialog = builder.create();
-                            dialog.show();
-
-
-                        }
-                    }
-                }inputStream.close();
             }
         });
-
-
-
-        return rootView;
     }
 }
+

@@ -3,86 +3,79 @@ package com.example.myapplication;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.Security;
+import java.util.HashMap;
+import java.util.concurrent.ThreadLocalRandom;
+
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
-import static com.example.myapplication.R.layout.activity_login;
-import static com.example.myapplication.R.layout.activity_registration;
 
 public class Registration extends AppCompatActivity {
+    int userID = ThreadLocalRandom.current().nextInt();
 
-
-    private EditText username, pass, confirmPass;
-    Button register;
-    ProgressBar progressBar;
-
-    FirebaseAuth fAuth;
-
+    EditText userName, fPassword,confirmPassword;
+    Button btnRegister;
+    DatabaseReference databaseReference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
-
-        username = (EditText) findViewById(R.id.usernameField);
-        pass = (EditText) findViewById(R.id.passwordField);
-        confirmPass = (EditText) findViewById(R.id.confirmPasswordField);
-        register = (Button) findViewById(R.id.registerButton);
-
-        fAuth = FirebaseAuth.getInstance();
-        progressBar = (ProgressBar) findViewById(R.id.progressRegBar);
-
-
-       register.setOnClickListener(new View.OnClickListener() {
+        userName=(EditText) findViewById(R.id.usernameField);
+        fPassword=(EditText) findViewById(R.id.passwordField);
+        confirmPassword=(EditText) findViewById(R.id.confirmPasswordField);
+        btnRegister=(Button) findViewById(R.id.registerButton);
+        databaseReference= FirebaseDatabase.getInstance().getReference("User_Login");
+        btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                String userName = username.getText().toString().trim();
-                String password = pass.getText().toString().trim();
+            public void onClick(View v) {
+                addArrayList();
+                Intent intphto =new Intent(getApplicationContext(),Login.class);
+                startActivity(intphto);
 
-                if (TextUtils.isEmpty(userName)){
-                    username.setError("Username is required");
-                    return;
-                }
-
-                if (TextUtils.isEmpty(password)){
-                    pass.setError("Password is required");
-                    return;
-                }
-
-                if (password.length() < 6){
-                    pass.setError("Password must be equal to or greater than 6 chars");
-                    return;
-                }
-
-                progressBar.setVisibility(View.VISIBLE);
-
-                fAuth.createUserWithEmailAndPassword(userName, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()){
-                            Toast.makeText(Registration.this, "User Created", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), Login.class));
-                        } else  {
-                            Toast.makeText(Registration.this, "Error occured" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
             }
         });
+    }
+    private void  addArrayList(){
+        String username = userName.getText().toString().trim();
+        String password =fPassword.getText().toString().trim();
+        String comfirmpassword =confirmPassword.getText().toString().trim();
+
+        if(TextUtils.isEmpty(username)){
+            userName.setError("Please enter your Username!");
+        }else if(TextUtils.isEmpty(password)){
+            fPassword.setError("Please enter your Password!");
+        }else if(!password.equals(comfirmpassword)){
+            confirmPassword.setError("Please put the same password");
+        }else{
+
+            //String id=  databaseReference.push().getKey();
+           // User user = new User(username,pass,email);
+
+            HashMap<String,Object> userMap= new HashMap<>();
+            userMap.put("password",password);
+            userMap.put("username",username);
+
+            databaseReference.child(String.valueOf(userID + username.charAt(0) + username.charAt(username.length()-1))).updateChildren(userMap);
+            Toast.makeText(this,"User added",Toast.LENGTH_LONG).show();
+            Cleartxt();
+
+        }
+
+    }
+    private void Cleartxt(){
+        userName.setText("");
+        fPassword.setText("");
+        confirmPassword.setText("");
     }
 }

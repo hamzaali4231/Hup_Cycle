@@ -116,8 +116,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                new Login()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Login()).commit();
         navigationView.setCheckedItem(R.id.nav_login);
 ////>>>>>>> Stashed changes
     }
