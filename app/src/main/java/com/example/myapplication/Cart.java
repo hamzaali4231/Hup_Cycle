@@ -4,6 +4,9 @@ public class Cart {
 
     private String date, id, name, price, quantity, time;
 
+    Cart(){}
+
+
     public Cart(String date, String id, String name, String price, String quantity, String time) {
         this.date = date;
         this.id = id;
@@ -12,6 +15,7 @@ public class Cart {
         this.quantity = quantity;
         this.time = time;
     }
+
 
     public String getDate() {
         return date;

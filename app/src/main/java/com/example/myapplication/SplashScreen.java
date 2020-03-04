@@ -39,7 +39,7 @@ public class SplashScreen extends AppCompatActivity implements Runnable{
     public void run() {
         Intent splashIntent = new Intent(SplashScreen.this, MainActivity.class);
         startActivity(splashIntent);
-       finish();
+        finish();
     }
 }
 

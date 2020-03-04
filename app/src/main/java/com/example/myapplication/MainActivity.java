@@ -116,8 +116,8 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Login()).commit();
-        navigationView.setCheckedItem(R.id.nav_login);
+//        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Login()).commit();
+//        navigationView.setCheckedItem(R.id.nav_login);
 ////>>>>>>> Stashed changes
     }
 
@@ -133,11 +133,23 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+            int id=menuItem.getItemId();
+            if (id==R.id.nav_cart){
+                Intent intent = new Intent(MainActivity.this,CartActivity.class);
+                startActivity(intent);
+
+            }
+            if (id == R.id.nav_login){
+                Intent intent = new Intent(MainActivity.this,Login.class);
+                startActivity(intent);
+            }
         switch (menuItem.getItemId()){
-            case R.id.nav_login:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Login()).commit();
-                break;
+
+//            case R.id.nav_login:
+//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+//                        new Login()).commit();
+//                break;
             case R.id.nav_about:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new aboutFragment()).commit();
@@ -152,10 +164,11 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new buyFragment()).commit();
                 break;
-            case R.id.nav_cart:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new CartActivity()).commit();
-                break;
+
+//            case R.id.nav_cart:
+//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+//                        new CartActivity()).commit();
+//                break;
 
             case R.id.nav_share:
                 Toast.makeText(this,"IT is shared", Toast.LENGTH_SHORT).show();
