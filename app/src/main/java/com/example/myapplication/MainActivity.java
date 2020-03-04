@@ -119,6 +119,8 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 //        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Login()).commit();
 //        navigationView.setCheckedItem(R.id.nav_login);
 ////>>>>>>> Stashed changes
+        Intent intent = new Intent(MainActivity.this,Login.class);
+        startActivity(intent);
     }
 
 
