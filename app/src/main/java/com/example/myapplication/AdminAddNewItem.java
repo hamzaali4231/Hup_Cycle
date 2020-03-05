@@ -26,9 +26,11 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.net.URI;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Locale;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -38,7 +40,8 @@ public class AdminAddNewItem extends AppCompatActivity {
 
     private ImageView item1, item2, item3;
 
-    private String categoryName, description, price, pname, saveCurrentDate, saveCurrentTime;
+    private String categoryName, description, pname, saveCurrentDate, saveCurrentTime;
+    private double price;
 
     private Button addNewProductButton;
 
@@ -78,6 +81,7 @@ public class AdminAddNewItem extends AppCompatActivity {
         loadingbar = new ProgressDialog(this);
         dropdownMenu = (Spinner) findViewById(R.id.categorySpinner);
 
+        //Drop down category
         ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(AdminAddNewItem.this,
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.category_names));
 
@@ -114,31 +118,21 @@ public class AdminAddNewItem extends AppCompatActivity {
     private void validateProductData() {
 
         description= inputProductDescription.getText().toString();
-        price= inputProductPrice.getText().toString();
+        price= Double.parseDouble(inputProductPrice.getText().toString());
         pname= inputProductName.getText().toString();
 
         if(ImageUri==null){
-            Toast.makeText(this,"Please select an image", Toast.LENGTH_SHORT);
+            Toast.makeText(AdminAddNewItem.this,"Please select an image", Toast.LENGTH_SHORT);
         }
-        else if(TextUtils.isEmpty(description))
-
-        {
-            Toast.makeText(this,"Please input a description", Toast.LENGTH_SHORT);
-
+        else if(TextUtils.isEmpty(description)) {
+            Toast.makeText(AdminAddNewItem.this,"Please input a description", Toast.LENGTH_SHORT);
         }
-        else if(TextUtils.isEmpty(price))
-
-        {
-            Toast.makeText(this,"Please input a price", Toast.LENGTH_SHORT);
-
+        else if(inputProductPrice.getText().toString().isEmpty()) {
+            Toast.makeText(AdminAddNewItem.this,"Please input a price", Toast.LENGTH_SHORT);
         }
-        else if(TextUtils.isEmpty(pname))
-
-        {
-            Toast.makeText(this,"Please input a product name", Toast.LENGTH_SHORT);
-
+        else if(TextUtils.isEmpty(pname)) {
+            Toast.makeText(AdminAddNewItem.this,"Please input a product name", Toast.LENGTH_SHORT);
         }
-
         else{
             StoreProductInformation();
         }
@@ -205,6 +199,8 @@ public class AdminAddNewItem extends AppCompatActivity {
     }
 
     private void saveProductInfoToDatabase() {
+        //UK currency
+        NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(Locale.UK);
 
         HashMap<String,Object> productmap= new HashMap<>();
         productmap.put("id",productrandomkey);
@@ -213,7 +209,7 @@ public class AdminAddNewItem extends AppCompatActivity {
         productmap.put("description",description);
         productmap.put("image",downloadImageURL);
         productmap.put("category",categoryName);
-        productmap.put("price",price);
+        productmap.put("price", currencyFormat.format(price));
         productmap.put("name",pname);
 
         productsref.child(productrandomkey).updateChildren(productmap).addOnCompleteListener(

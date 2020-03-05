@@ -62,7 +62,7 @@ public class Login extends AppCompatActivity {
                     if (!username.isEmpty()){
                         if (user.getPassword().equals(password)){
                             Toast.makeText(Login.this,"Login Successful",Toast.LENGTH_LONG).show();
-                            Intent intphto =new Intent(getApplicationContext(),buyFragment.class);
+                            Intent intphto =new Intent(getApplicationContext(),AdminCategory.class);
                             startActivity(intphto);
                         }else {
                             Toast.makeText(Login.this,"Password is Incorrect",Toast.LENGTH_LONG).show();
