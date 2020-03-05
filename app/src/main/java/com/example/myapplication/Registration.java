@@ -10,8 +10,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -19,6 +22,7 @@ import java.security.Security;
 import java.util.HashMap;
 import java.util.concurrent.ThreadLocalRandom;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Registration extends AppCompatActivity {
@@ -40,15 +44,12 @@ public class Registration extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 addArrayList();
-                Intent intphto =new Intent(getApplicationContext(),Login.class);
-                startActivity(intphto);
-
             }
         });
     }
     private void  addArrayList(){
-        String username = userName.getText().toString().trim();
-        String password =fPassword.getText().toString().trim();
+        final String username = userName.getText().toString().trim();
+        final String password =fPassword.getText().toString().trim();
         String comfirmpassword =confirmPassword.getText().toString().trim();
 
         if(TextUtils.isEmpty(username)){
@@ -58,19 +59,36 @@ public class Registration extends AppCompatActivity {
         }else if(!password.equals(comfirmpassword)){
             confirmPassword.setError("Please put the same password");
         }else{
+            databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if(dataSnapshot.child(username).exists()){
+                        Toast.makeText(Registration.this,"User already exists",Toast.LENGTH_LONG).show();
+                        // use "username" already exists
+                        // Let the user know he needs to pick another username.
+                    } else {
+                        HashMap<String,Object> userMap= new HashMap<>();
+                        userMap.put("password",password);
+                        userMap.put("username",username);
 
+                        //databaseReference.child(String.valueOf(userID + username.charAt(0) + username.charAt(username.length()-1))).updateChildren(userMap);
+                        databaseReference.child(username).child("username").setValue(username);
+                        databaseReference.child(username).child("password").setValue(password);
+                        Toast.makeText(Registration.this,"User added",Toast.LENGTH_LONG).show();
+                        Cleartxt();
+                        Intent intphto =new Intent(getApplicationContext(),Login.class);
+                        startActivity(intphto);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
             //String id=  databaseReference.push().getKey();
            // User user = new User(username,pass,email);
 
-            HashMap<String,Object> userMap= new HashMap<>();
-            userMap.put("password",password);
-            userMap.put("username",username);
-
-            //databaseReference.child(String.valueOf(userID + username.charAt(0) + username.charAt(username.length()-1))).updateChildren(userMap);
-            databaseReference.child(username).child("username").setValue(username);
-            databaseReference.child(username).child("password").setValue(password);
-            Toast.makeText(this,"User added",Toast.LENGTH_LONG).show();
-            Cleartxt();
 
         }
 
@@ -81,3 +99,4 @@ public class Registration extends AppCompatActivity {
         confirmPassword.setText("");
     }
 }
+
