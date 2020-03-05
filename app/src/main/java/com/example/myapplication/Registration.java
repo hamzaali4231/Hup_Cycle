@@ -66,7 +66,9 @@ public class Registration extends AppCompatActivity {
             userMap.put("password",password);
             userMap.put("username",username);
 
-            databaseReference.child(String.valueOf(userID + username.charAt(0) + username.charAt(username.length()-1))).updateChildren(userMap);
+            //databaseReference.child(String.valueOf(userID + username.charAt(0) + username.charAt(username.length()-1))).updateChildren(userMap);
+            databaseReference.child(username).child("username").setValue(username);
+            databaseReference.child(username).child("password").setValue(password);
             Toast.makeText(this,"User added",Toast.LENGTH_LONG).show();
             Cleartxt();
 

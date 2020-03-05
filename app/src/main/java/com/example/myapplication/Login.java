@@ -27,15 +27,17 @@ public class Login extends AppCompatActivity {
     Button loginb;
 
     DatabaseReference databaseReference;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        Button loginb = findViewById(R.id.login);
+        loginb = findViewById(R.id.login);
         userName = (EditText) findViewById(R.id.usernameField);
         password = (EditText) findViewById(R.id.confirmPasswordField);
         register = (TextView) findViewById(R.id.registerTextview);
+        databaseReference=FirebaseDatabase.getInstance().getReference("User_Login");
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,13 +59,14 @@ public class Login extends AppCompatActivity {
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                System.out.println(dataSnapshot.child(username).toString());
                 if(dataSnapshot.child(username).exists()){
-                    if (username.isEmpty()){
+                    if (!username.isEmpty()){
                         User user=dataSnapshot.child(username).getValue(User.class);
                         if (user.getPassword().equals(password)){
                             Toast.makeText(Login.this,"Login Success",Toast.LENGTH_LONG).show();
-                            Intent intphto =new Intent(getApplicationContext(),AdminAddNewItem.class);
-                            startActivity(intphto);
+                            Intent intent =new Intent(getApplicationContext(), AdminAddNewItem.class);
+                            startActivity(intent);
                         }else {
                             Toast.makeText(Login.this,"Password is Incorrect",Toast.LENGTH_LONG).show();
                         }
