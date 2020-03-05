@@ -26,18 +26,16 @@ public class Login extends AppCompatActivity {
     private TextView register;
     Button loginb;
 
-    DatabaseReference databaseReference;
-
+    DatabaseReference logindatabaseReference ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        loginb = findViewById(R.id.login);
+        Button loginb = findViewById(R.id.login);
         userName = (EditText) findViewById(R.id.usernameField);
         password = (EditText) findViewById(R.id.confirmPasswordField);
         register = (TextView) findViewById(R.id.registerTextview);
-        databaseReference=FirebaseDatabase.getInstance().getReference("User_Login");
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,25 +54,33 @@ public class Login extends AppCompatActivity {
     }
 
     private void logIn(final String username,final String password) {
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        logindatabaseReference=FirebaseDatabase.getInstance().getReference().child("User_Login");
+
+        logindatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                System.out.println(dataSnapshot.child(username).toString());
+                User user=dataSnapshot.child(username).getValue(User.class);
                 if(dataSnapshot.child(username).exists()){
+
                     if (!username.isEmpty()){
-                        User user=dataSnapshot.child(username).getValue(User.class);
                         if (user.getPassword().equals(password)){
                             Toast.makeText(Login.this,"Login Success",Toast.LENGTH_LONG).show();
-                            Intent intent =new Intent(getApplicationContext(), AdminAddNewItem.class);
-                            startActivity(intent);
+                            Intent intphto =new Intent(getApplicationContext(),AdminCategory.class);
+                            startActivity(intphto);
                         }else {
                             Toast.makeText(Login.this,"Password is Incorrect",Toast.LENGTH_LONG).show();
                         }
-                    }else {
-                        Toast.makeText(Login.this,"User is not registered",Toast.LENGTH_LONG).show();
                     }
+//                    else {
+//
+//                        Toast.makeText(Login.this,"User is not registered",Toast.LENGTH_LONG).show();
+//                    }
 
-                }else {
+
+                }
+                else {
+//                    System.out.println("username is "+username);
+//                    System.out.println("Password is "+password);
                     Toast.makeText(Login.this,"User is not registered",Toast.LENGTH_LONG).show();
                 }
             }
