@@ -8,35 +8,41 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Please select a Category to add an item"
+        android:text="Admin"
         android:textAlignment="center"
-        android:textSize="30sp"
-        android:textStyle="bold"/>
+        android:textSize="50sp"
+        android:textStyle="bold" />
 
 
     <LinearLayout
-        android:id="@+id/category_linear_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/aaai_title"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginTop="45dp">
-        <ImageView
-            android:id="@+id/item1"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:src="@drawable/ic_share"/>
-        <ImageView
-            android:id="@+id/item2"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:src="@drawable/ic_action_lock"/>
-        <ImageView
-            android:id="@+id/item3"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:src="@drawable/ic_action_user"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/adminTitle"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:text="Item Database"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/category_linear_layout"
+            android:layout_width="match_parent"
+            android:layout_height="97dp"
+            android:layout_marginTop="45dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/itemDatabase"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/add_item" />
+        </LinearLayout>
     </LinearLayout>
+
 </LinearLayout>
