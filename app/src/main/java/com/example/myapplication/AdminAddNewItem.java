@@ -7,9 +7,11 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.style.UpdateLayout;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.Continuation;
@@ -56,6 +58,8 @@ public class AdminAddNewItem extends AppCompatActivity {
 
     private ProgressDialog loadingbar;
 
+    private Spinner dropdownMenu;
+
     @Override
     protected void onCreate (Bundle savedInstance) {
 
@@ -63,7 +67,6 @@ public class AdminAddNewItem extends AppCompatActivity {
 
         setContentView(R.layout.activity_admin_add_product_activity);
 
-        categoryName = getIntent().getExtras().get("Category").toString();
         productImagesreference = FirebaseStorage.getInstance().getReference().child("Product Images");
         productsref= FirebaseDatabase.getInstance().getReference().child("Products");
 
@@ -73,6 +76,16 @@ public class AdminAddNewItem extends AppCompatActivity {
         inputProductDescription= (EditText) findViewById(R.id.product_description);
         inputProductPrice= (EditText) findViewById(R.id.product_price);
         loadingbar = new ProgressDialog(this);
+        dropdownMenu = (Spinner) findViewById(R.id.categorySpinner);
+
+        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(AdminAddNewItem.this,
+                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.category_names));
+
+        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dropdownMenu.setAdapter(myAdapter);
+
+        categoryName = dropdownMenu.getSelectedItem().toString();
+
 
         inputImage.setOnClickListener(new View.OnClickListener() {
             @Override
