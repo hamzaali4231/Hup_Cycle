@@ -68,6 +68,9 @@
         <activity
             android:name=".buyFragment"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".ConfirmActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
     </application>
 
