@@ -6,7 +6,6 @@ import android.os.Handler;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -37,7 +36,7 @@ public class SplashScreen extends AppCompatActivity implements Runnable{
 
     @Override
     public void run() {
-        Intent splashIntent = new Intent(SplashScreen.this, MainActivity.class);
+        Intent splashIntent = new Intent(SplashScreen.this, Login.class);
         startActivity(splashIntent);
         finish();
     }

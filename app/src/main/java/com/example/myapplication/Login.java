@@ -61,21 +61,23 @@ public class Login extends AppCompatActivity {
 
                     if (!username.isEmpty()){
                         if (user.getPassword().equals(password)){
-                            Toast.makeText(Login.this,"Login Successful",Toast.LENGTH_LONG).show();
-                            Intent intphto =new Intent(getApplicationContext(),buyFragment.class);
+                            Toast.makeText(Login.this,"Login Success",Toast.LENGTH_LONG).show();
+                            Intent intphto =new Intent(getApplicationContext(), Home.class);
                             startActivity(intphto);
                         }else {
                             Toast.makeText(Login.this,"Password is Incorrect",Toast.LENGTH_LONG).show();
                         }
                     }
-                    else {
-
-                        Toast.makeText(Login.this,"Username cannot be empty",Toast.LENGTH_LONG).show();
-                    }
+//                    else {
+//
+//                        Toast.makeText(Login.this,"User is not registered",Toast.LENGTH_LONG).show();
+//                    }
 
 
                 }
                 else {
+//                    System.out.println("username is "+username);
+//                    System.out.println("Password is "+password);
                     Toast.makeText(Login.this,"User is not registered",Toast.LENGTH_LONG).show();
                 }
             }

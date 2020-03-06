@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
@@ -152,10 +153,10 @@ public class AdminAddNewItem extends AppCompatActivity {
         loadingbar.show();
         Calendar calendar = Calendar.getInstance();
 
-        SimpleDateFormat currentDate= new SimpleDateFormat("MMM dd, yyyy");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat currentDate= new SimpleDateFormat("MMM dd, yyyy");
         saveCurrentDate= currentDate.format(calendar.getTime());
 
-        SimpleDateFormat currentTime= new SimpleDateFormat("HH:MM:ss");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat currentTime= new SimpleDateFormat("HH:MM:ss");
         saveCurrentTime= currentTime.format(calendar.getTime());
 
         productrandomkey= saveCurrentDate + saveCurrentTime;
