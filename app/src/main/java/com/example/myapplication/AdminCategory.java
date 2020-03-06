@@ -5,13 +5,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-import java.util.Locale;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 public class AdminCategory extends AppCompatActivity {
 
-    private ImageView item1, item2, item3;
+    private ImageView itemImage;
 
     @Override
     protected void onCreate (Bundle savedInstance) {
@@ -20,12 +18,10 @@ public class AdminCategory extends AppCompatActivity {
 
         setContentView(R.layout.activity_admin_select_category);
 
-        item1 = (ImageView) findViewById(R.id.item1);
-        item2 = (ImageView) findViewById(R.id.item2);
-        item3= (ImageView) findViewById(R.id.item3);
+        itemImage = (ImageView) findViewById(R.id.itemDatabase);
 
 
-        item1.setOnClickListener(new View.OnClickListener() {
+        itemImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -36,7 +32,7 @@ public class AdminCategory extends AppCompatActivity {
             }
         });
 
-        item2.setOnClickListener(new View.OnClickListener() {
+        itemImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -47,7 +43,7 @@ public class AdminCategory extends AppCompatActivity {
             }
         });
 
-        item3.setOnClickListener(new View.OnClickListener() {
+        itemImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
