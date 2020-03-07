@@ -54,13 +54,13 @@ public  class CartActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         NextProcess = findViewById(R.id.cart_but_2);
-        totalamount_txt = findViewById(R.id.total_price);
+        totalamount_txt = findViewById(R.id.cart_total);
+
 
         NextProcess.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), ConfirmActivity.class);
-                intent.putExtra("Your Total is", String.valueOf(totalprice));
                 startActivity(intent);
                 finish();
             }
@@ -80,14 +80,16 @@ public  class CartActivity extends AppCompatActivity {
                 FirebaseRecyclerAdapter<Cart, CartViewHolder>(options) {
                     @Override
                     protected void onBindViewHolder(@NonNull CartViewHolder cartViewHolder, int i,
-                                                    @NonNull final Cart model) {
-                        cartViewHolder.txtProductQuantity.setText(model.getQuantity());
-                        cartViewHolder.txtProductPrice.setText(model.getPrice());
-                        cartViewHolder.txtProductName.setText(model.getName());
+                                                    @NonNull final Cart cartmodel) {
+                        cartViewHolder.txtProductQuantity.setText(cartmodel.getQuantity());
+                        cartViewHolder.txtProductPrice.setText(cartmodel.getPrice());
+                        cartViewHolder.txtProductName.setText(cartmodel.getName());
 
-                        int oneProductPrice= ((Integer.valueOf(model.getPrice()))) * Integer.valueOf(model.getQuantity());
+                       int oneProductPrice= ((Integer.valueOf(cartmodel.getPrice()))) * Integer.valueOf(cartmodel.getQuantity());
 
-                        totalprice=oneProductPrice+totalprice;
+                       totalprice=oneProductPrice+totalprice;
+                       totalamount_txt.setText("Total is: £"+ String.valueOf(totalprice));
+
                         cartViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
 
@@ -103,11 +105,11 @@ public  class CartActivity extends AppCompatActivity {
                                     public void onClick(DialogInterface dialog, int i) {
                                         if(i==0){
                                             Intent intent = new Intent(CartActivity.this, ProductDetailsActivity.class);
-                                            intent.putExtra("id", model.getId());
+                                            intent.putExtra("id", cartmodel.getId());
                                             startActivity(intent);
                                         }
                                         if(i==1){
-                                            cartlistref.child("User View").child("Products").child(model.getId()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            cartlistref.child("User View").child("Products").child(cartmodel.getId()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
 
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
