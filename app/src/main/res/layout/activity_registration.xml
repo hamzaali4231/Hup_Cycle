@@ -4,24 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
+    android:background="@drawable/registration_background"
     tools:context=".Login">
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="176dp"
-        android:layout_height="258dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/usernameField"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/profile"
-        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/registerButton"
@@ -29,15 +13,16 @@
         android:layout_height="77dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="116dp"
+        android:background="@android:color/transparent"
         android:lineSpacingExtra="24sp"
-        android:text="Register"
+        android:text="Sign Up"
+        android:textColor="@android:color/white"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textSize="36sp"
         android:typeface="sans"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
 
@@ -51,6 +36,8 @@
         android:drawableLeft="@drawable/ic_action_user"
         android:ems="10"
         android:hint="Username"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/white"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/passwordField"
         app:layout_constraintEnd_toEndOf="parent"
@@ -68,6 +55,7 @@
         android:ems="10"
         android:hint="Confirm Password"
         android:inputType="textPersonName"
+        android:textColorHint="@android:color/white"
         app:layout_constraintBottom_toTopOf="@+id/registerButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -84,6 +72,7 @@
         android:ems="10"
         android:hint="Password"
         android:inputType="textPersonName"
+        android:textColorHint="@android:color/white"
         app:layout_constraintBottom_toTopOf="@+id/confirmPasswordField"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -94,8 +83,26 @@
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@android:color/white"
         android:visibility="invisible"
         tools:layout_editor_absoluteX="181dp"
-        tools:layout_editor_absoluteY="667dp" />
+        tools:layout_editor_absoluteY="629dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="72dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="Sign Up"
+        android:textColor="@android:color/white"
+        android:textSize="50dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
