@@ -159,15 +159,26 @@ public class Home extends AppCompatActivity  implements NavigationView.OnNavigat
                 startActivity(intent);
 
             }
+            else if (id == R.id.nav_about){
+                Intent intent = new Intent(Home.this,aboutFragment.class);
+                System.out.println("Login opening");
+                startActivity(intent);
+            }
+
             else if (id == R.id.nav_login){
                 Intent intent = new Intent(Home.this,Login.class);
                 System.out.println("Login opening");
                 startActivity(intent);
             }
+            else if(id ==R.id.nav_map){
+                Intent intent = new Intent(Home.this,LocationPage2.class);
+                startActivity(intent);
+            }
 
-        else if (id== R.id.nav_buy){
+            else if (id== R.id.nav_buy){
 
             }
+
 
 
 //        switch (menuItem.getItemId()){
