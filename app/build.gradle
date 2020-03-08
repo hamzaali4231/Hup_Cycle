@@ -38,7 +38,8 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'io.paperdb:paperdb:2.6'
-
+    implementation 'com.google.android.gms:play-services-maps:9.4.0'
+    implementation 'com.google.android.gms:play-services-location:9.4.0'
     implementation 'com.google.android.gms:play-services-maps:16.1.0'
     implementation 'androidx.gridlayout:gridlayout:1.0.0'
 
