@@ -23,7 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 
-public class Home extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
+public class Buy extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
 
     private DatabaseReference productDatabaseReference;
 
@@ -37,7 +37,7 @@ public class Home extends AppCompatActivity  implements NavigationView.OnNavigat
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_buy);
 
         productDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Products");
 
@@ -86,14 +86,13 @@ public class Home extends AppCompatActivity  implements NavigationView.OnNavigat
                         productViewHolder.productName.setText(model.getName());
                         productViewHolder.productDescription.setText(model.getDescription());
                         productViewHolder.productPrice.setText("Price = " +model.getPrice());
-                        productViewHolder.productQuantity.setText(model.getQuantity());
                         Picasso.get().load(model.getImage()).into(productViewHolder.imageView);
 
                         productViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
 
-                                Intent intent = new Intent(Home.this, ProductDetailsActivity.class);
+                                Intent intent = new Intent(Buy.this, ProductDetailsActivity.class);
                                 intent.putExtra("id",model.getId());
                                 startActivity(intent);
                             }
@@ -121,7 +120,7 @@ public class Home extends AppCompatActivity  implements NavigationView.OnNavigat
 //        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Login()).commit();
 //        navigationView.setCheckedItem(R.id.nav_login);
 ////>>>>>>> Stashed changes
-//        Intent intent = new Intent(Home.this, Login.class);
+//        Intent intent = new Intent(Buy.this, Login.class);
 //        startActivity(intent);
     }
 
@@ -155,24 +154,24 @@ public class Home extends AppCompatActivity  implements NavigationView.OnNavigat
             int id=menuItem.getItemId();
 
             if (id==R.id.nav_cart){
-                Intent intent = new Intent(Home.this,CartActivity.class);
+                Intent intent = new Intent(Buy.this,CartActivity.class);
                 System.out.println("Login opening");
                 startActivity(intent);
 
             }
             else if (id == R.id.nav_about){
-                Intent intent = new Intent(Home.this,aboutFragment.class);
+                Intent intent = new Intent(Buy.this,aboutFragment.class);
                 System.out.println("Login opening");
                 startActivity(intent);
             }
 
             else if (id == R.id.nav_login){
-                Intent intent = new Intent(Home.this,Login.class);
+                Intent intent = new Intent(Buy.this,Login.class);
                 System.out.println("Login opening");
                 startActivity(intent);
             }
             else if(id ==R.id.nav_map){
-                Intent intent = new Intent(Home.this,LocationPage2.class);
+                Intent intent = new Intent(Buy.this,LocationPage2.class);
                 startActivity(intent);
             }
 

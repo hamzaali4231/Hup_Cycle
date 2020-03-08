@@ -98,9 +98,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
                                                     "added to cart",
                                             Toast.LENGTH_SHORT).show();
 
-                                    Intent intent = new Intent(
-                                            ProductDetailsActivity.this,
-                                            Home.class);
+                                    Intent intent = new Intent(ProductDetailsActivity.this,
+                                            Buy.class);
                                     startActivity(intent);
 
                                 }
@@ -123,7 +122,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
                     Products products= dataSnapshot.getValue(Products.class);
                     nameProduct.setText(products.getName());
                     priceProduct.setText(products.getPrice());
-                    quantityProduct.setText(products.getQuantity());
+                    //quantityProduct.setText(products.getQuantity());
                     descriptionProduct.setText(products.getDescription());
                     Picasso.get().load(products.getImage()).into(productImage);
                 }
