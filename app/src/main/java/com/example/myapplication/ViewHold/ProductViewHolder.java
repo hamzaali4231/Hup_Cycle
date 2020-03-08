@@ -1,20 +1,19 @@
 package com.example.myapplication.ViewHold;
 
-import android.content.Context;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.example.myapplication.Interface.ItemClickListener;
 import com.example.myapplication.R;
+
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 
 public class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    public TextView productName, productDescription, productPrice;
+    public TextView productName, productDescription, productPrice, productQuantity;
     public ImageView imageView;
     public CardView cardView;
     public ItemClickListener listener;
@@ -26,8 +25,9 @@ public class ProductViewHolder extends RecyclerView.ViewHolder implements View.O
         productName = (TextView) itemView.findViewById(R.id.product_name);
         productDescription = (TextView) itemView.findViewById(R.id.product_description);
         productPrice = (TextView) itemView.findViewById(R.id.product_price);
+        productQuantity = (TextView) itemView.findViewById(R.id.product_quantity);
         cardView = (CardView) itemView.findViewById(R.id.cv_id);
-         cardView.setCardElevation(-5);
+        cardView.setCardElevation(-5);
 
 
     }

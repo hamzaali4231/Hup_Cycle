@@ -43,12 +43,13 @@ public class AdminAddNewItem extends AppCompatActivity {
 
     private String categoryName, description, pname, saveCurrentDate, saveCurrentTime;
     private double price;
+    private int quantity;
 
     private Button addNewProductButton;
 
     private ImageView inputImage;
 
-    private EditText inputProductName, inputProductDescription, inputProductPrice;
+    private EditText inputProductName, inputProductDescription, inputProductPrice, inputProductQuantity;
 
     private static final int Imagepick=1;
 
@@ -79,6 +80,7 @@ public class AdminAddNewItem extends AppCompatActivity {
         inputProductName= (EditText) findViewById(R.id.product_name);
         inputProductDescription= (EditText) findViewById(R.id.product_description);
         inputProductPrice= (EditText) findViewById(R.id.product_price);
+        inputProductQuantity = (EditText) findViewById(R.id.product_quantity);
         loadingbar = new ProgressDialog(this);
         dropdownMenu = (Spinner) findViewById(R.id.categorySpinner);
 
@@ -120,21 +122,20 @@ public class AdminAddNewItem extends AppCompatActivity {
 
         description= inputProductDescription.getText().toString();
         price= Double.parseDouble(inputProductPrice.getText().toString());
+        quantity = Integer.parseInt(inputProductQuantity.getText().toString());
         pname= inputProductName.getText().toString();
 
         if(ImageUri==null){
             Toast.makeText(AdminAddNewItem.this,"Please select an image", Toast.LENGTH_SHORT);
-        }
-        else if(TextUtils.isEmpty(description)) {
+        } else if(TextUtils.isEmpty(description)) {
             Toast.makeText(AdminAddNewItem.this,"Please input a description", Toast.LENGTH_SHORT);
-        }
-        else if(inputProductPrice.getText().toString().isEmpty()) {
+        } else if(inputProductPrice.getText().toString().isEmpty()) {
             Toast.makeText(AdminAddNewItem.this,"Please input a price", Toast.LENGTH_SHORT);
-        }
-        else if(TextUtils.isEmpty(pname)) {
+        } else if(inputProductQuantity.getText().toString().isEmpty()) {
+            Toast.makeText(AdminAddNewItem.this,"Please input a price", Toast.LENGTH_SHORT);
+        } else if(TextUtils.isEmpty(pname)) {
             Toast.makeText(AdminAddNewItem.this,"Please input a product name", Toast.LENGTH_SHORT);
-        }
-        else{
+        } else{
             StoreProductInformation();
         }
     }
@@ -211,6 +212,7 @@ public class AdminAddNewItem extends AppCompatActivity {
         productmap.put("image",downloadImageURL);
         productmap.put("category",categoryName);
         productmap.put("price", currencyFormat.format(price));
+        productmap.put("quantity", quantity);
         productmap.put("name",pname);
 
         productsref.child(productrandomkey).updateChildren(productmap).addOnCompleteListener(

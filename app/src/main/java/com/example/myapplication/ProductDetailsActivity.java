@@ -31,7 +31,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private Button addtocart;
     private ImageView productImage;
     private ElegantNumberButton numberButton;
-    private TextView priceproduct, nameproduct, descriptionproduct;
+    private TextView priceProduct, nameProduct, descriptionProduct, quantityProduct;
     private String productsID = "", state= "Normal";
 
     @Override
@@ -46,10 +46,10 @@ public class ProductDetailsActivity extends AppCompatActivity {
         addtocart = (Button) findViewById(R.id.but_add_cart);
         productImage = (ImageView) findViewById(R.id.product_image_details);
         numberButton = (ElegantNumberButton) findViewById(R.id.amount_cart_btn);
-
-        priceproduct = (TextView) findViewById(R.id.product_price_details);
-        nameproduct = (TextView) findViewById(R.id.product_name_details);
-        descriptionproduct = (TextView) findViewById(R.id.product_description_details);
+        priceProduct = (TextView) findViewById(R.id.product_price_details);
+        quantityProduct = (TextView) findViewById(R.id.product_quantity);
+        nameProduct = (TextView) findViewById(R.id.product_name_details);
+        descriptionProduct = (TextView) findViewById(R.id.product_description_details);
 
        getProductDetails(productsID);
 
@@ -77,8 +77,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
         final HashMap<String, Object> cartMap = new HashMap<>();
         cartMap.put("id", productsID);
-        cartMap.put("name", nameproduct.getText().toString());
-        cartMap.put("price", priceproduct.getText().toString());
+        cartMap.put("name", nameProduct.getText().toString());
+        cartMap.put("price", priceProduct.getText().toString());
         cartMap.put("date", saveCurrentDate);
         cartMap.put("time", saveCurrentTime);
         cartMap.put("quantity", numberButton.getNumber());
@@ -121,9 +121,10 @@ public class ProductDetailsActivity extends AppCompatActivity {
                 if (dataSnapshot.exists())
                 {
                     Products products= dataSnapshot.getValue(Products.class);
-                    nameproduct.setText(products.getName());
-                    priceproduct.setText(products.getPrice());
-                    descriptionproduct.setText(products.getDescription());
+                    nameProduct.setText(products.getName());
+                    priceProduct.setText(products.getPrice());
+                    quantityProduct.setText(products.getQuantity());
+                    descriptionProduct.setText(products.getDescription());
                     Picasso.get().load(products.getImage()).into(productImage);
                 }
 
