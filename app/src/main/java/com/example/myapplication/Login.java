@@ -59,28 +59,26 @@ public class Login extends AppCompatActivity {
                 User user=dataSnapshot.child(username).getValue(User.class);
                 if(dataSnapshot.child(username).exists()){
 
+                    // User login
                     if (!username.isEmpty()){
                         if (user.getPassword().equals(password)){
-                            Toast.makeText(Login.this,"Login Successful",Toast.LENGTH_LONG).show();
-                            Intent intphto =new Intent(getApplicationContext(),AdminCategory.class);
-                            startActivity(intphto);
-                        }
-                        else if(!user.getUsername().equals("test")){
-                            Intent intphto =new Intent(getApplicationContext(),Home.class);
-                            startActivity(intphto);
-                        }
-                        else {
+                            if(!user.getUsername().equals("test")){
+                                Toast.makeText(Login.this,"Login Successful",Toast.LENGTH_LONG).show();
+                                Intent intent =new Intent(getApplicationContext(),Home.class);
+                                startActivity(intent);
+                            } else {
+                                Toast.makeText(Login.this,"Login Successful",Toast.LENGTH_LONG).show();
+                                Intent intent =new Intent(getApplicationContext(),AdminCategory.class);
+                                startActivity(intent);
+                            }
+                        } else {
                             Toast.makeText(Login.this,"Password is Incorrect",Toast.LENGTH_LONG).show();
                         }
-                    }
-                    else {
-
+                    } else {
                         Toast.makeText(Login.this,"Username cannot be empty",Toast.LENGTH_LONG).show();
                     }
 
-
-                }
-                else {
+                } else {
                     Toast.makeText(Login.this,"User is not registered",Toast.LENGTH_LONG).show();
                 }
             }
