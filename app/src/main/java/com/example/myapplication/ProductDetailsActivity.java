@@ -79,6 +79,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         cartMap.put("id", productsID);
         cartMap.put("name", nameProduct.getText().toString());
         cartMap.put("price", priceProduct.getText().toString());
+        cartMap.put("ImageUrl",productImage);
         cartMap.put("date", saveCurrentDate);
         cartMap.put("time", saveCurrentTime);
         cartMap.put("quantity", numberButton.getNumber());
@@ -121,8 +122,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
                 {
                     Products products= dataSnapshot.getValue(Products.class);
                     nameProduct.setText(products.getName());
-                    String stringPrice=Double.toString(products.getPrice());
-                    priceProduct.setText(stringPrice);
+                    priceProduct.setText(products.getPrice());
                     //quantityProduct.setText(products.getQuantity());
                     descriptionProduct.setText(products.getDescription());
                     Picasso.get().load(products.getImage()).into(productImage);

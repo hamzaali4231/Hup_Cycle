@@ -81,7 +81,7 @@ public  class CartActivity extends AppCompatActivity {
                         cartViewHolder.txtProductQuantity.setText(cartmodel.getQuantity());
                         cartViewHolder.txtProductPrice.setText(cartmodel.getPrice());
                         cartViewHolder.txtProductName.setText(cartmodel.getName());
-                        Picasso.get().load(cartmodel.getImageView()).into(cartViewHolder.imageHolder);
+//                        Picasso.get().load(cartmodel.getImageView()).into(cartViewHolder.imageHolder);
 
 
                         int oneProductPrice= ((Integer.valueOf(cartmodel.getPrice()))) * Integer.valueOf(cartmodel.getQuantity());

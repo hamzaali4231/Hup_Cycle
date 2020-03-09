@@ -6,12 +6,12 @@ import android.widget.ImageView;
 public class Cart {
 
     private String date, id, name, price, quantity, time;
-    private Uri imageView;
+    private String imageView;
     Cart(){}
 
 
     public Cart(String date, String id, String name, String price, String quantity, String time,
-                Uri imageView) {
+                String imageView) {
         this.date = date;
         this.id = id;
         this.name = name;
@@ -58,11 +58,11 @@ public class Cart {
         return quantity;
     }
 
-    public Uri getImageView() {
+    public String getImageView() {
         return imageView;
     }
 
-    public void setImageView(Uri imageView) {
+    public void setImageView(String imageView) {
         this.imageView = imageView;
     }
 

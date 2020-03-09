@@ -28,7 +28,6 @@ public class ProductViewHolder extends RecyclerView.ViewHolder implements View.O
         cardView = (CardView) itemView.findViewById(R.id.cv_id);
         cardView.setCardElevation(-5);
 
-
     }
 
 

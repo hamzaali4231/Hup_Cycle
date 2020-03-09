@@ -4,7 +4,7 @@ public class Products {
 
     private String name;
     private String description;
-    private Double price;
+    private String price;
     //private String quantity;
     private String image;
     private String category;
@@ -16,7 +16,7 @@ public class Products {
 
     }
 
-    public Products(String name, String description, Double price, String id, String image, String category, String date, String time) {
+    public Products(String name, String description, String price, String id, String image, String category, String date, String time) {
         this.name = name;
         this.description = description;
         this.price = price;
@@ -62,11 +62,11 @@ public class Products {
 //        this.quantity = quantity;
 //    }
 
-    public Double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 

@@ -3,11 +3,8 @@ package com.example.myapplication.ViewHold;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.myapplication.Interface.ItemClickListener;
 import com.example.myapplication.R;
-
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class CartViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -16,7 +13,7 @@ public class CartViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     public ImageView imageHolder;
     private ItemClickListener itemClickListener;
 
-    public CartViewHolder(@NonNull View itemView) {
+    public CartViewHolder( View itemView) {
         super(itemView);
 
         txtProductName = itemView.findViewById(R.id.product_name_cart);
