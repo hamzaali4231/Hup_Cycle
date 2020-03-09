@@ -4,11 +4,11 @@
     <string name="navigation_drawer_close"> Close navigation Drawer</string>
     <string name="title_activity_maps">Map</string>
 
+    <string name="title_activity_location_page2">Map</string>
     <string-array name="category_names">
         <item>Electronics</item>
         <item>Home</item>
         <item>Fashion</item>
         <item>Health &amp; Beauty</item>
     </string-array>
-    <string name="title_activity_location_page2">Map</string>
 </resources>

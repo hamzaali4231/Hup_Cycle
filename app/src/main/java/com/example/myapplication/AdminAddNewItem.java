@@ -247,8 +247,8 @@ public class AdminAddNewItem extends AppCompatActivity {
 
 //        if (requestCode == Imagepick && requestCode==RESULT_OK && data!=null){
 
-            ImageUri= data.getData();
-            inputImage.setImageURI(ImageUri);
+        ImageUri= data.getData();
+        inputImage.setImageURI(ImageUri);
         //}
     }
 }
