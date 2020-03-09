@@ -1,19 +1,24 @@
 package com.example.myapplication;
 
+import android.net.Uri;
+import android.widget.ImageView;
+
 public class Cart {
 
     private String date, id, name, price, quantity, time;
-
+    private Uri imageView;
     Cart(){}
 
 
-    public Cart(String date, String id, String name, String price, String quantity, String time) {
+    public Cart(String date, String id, String name, String price, String quantity, String time,
+                Uri imageView) {
         this.date = date;
         this.id = id;
         this.name = name;
         this.price = price;
         this.quantity = quantity;
         this.time = time;
+        this.imageView=imageView;
     }
 
 
@@ -51,6 +56,14 @@ public class Cart {
 
     public String getQuantity() {
         return quantity;
+    }
+
+    public Uri getImageView() {
+        return imageView;
+    }
+
+    public void setImageView(Uri imageView) {
+        this.imageView = imageView;
     }
 
     public void setQuantity(String quantity) {

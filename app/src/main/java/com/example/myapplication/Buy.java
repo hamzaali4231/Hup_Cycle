@@ -61,8 +61,6 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
 //            navigationView.setCheckedItem(R.id.nav_view);
 //        }
 
-
-
         recyclerView = findViewById(R.id.recycler_menu);
         recyclerView.setHasFixedSize(false);
         layoutManager = new LinearLayoutManager(this);
