@@ -1,6 +1,7 @@
 package com.example.myapplication.ViewHold;
 
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.myapplication.Interface.ItemClickListener;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class CartViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     public TextView txtProductName, txtProductPrice, txtProductQuantity;
+    public ImageView imageHolder;
     private ItemClickListener itemClickListener;
 
     public CartViewHolder(@NonNull View itemView) {
@@ -20,6 +22,7 @@ public class CartViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         txtProductName = itemView.findViewById(R.id.product_name_cart);
         txtProductPrice = itemView.findViewById(R.id.product_price_cart);
         txtProductQuantity = itemView.findViewById(R.id.product_quantity_cart);
+        imageHolder = itemView.findViewById(R.id.product_image_cart);
 
     }
 

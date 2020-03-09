@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -84,6 +85,7 @@ public  class CartActivity extends AppCompatActivity {
                         cartViewHolder.txtProductQuantity.setText(cartmodel.getQuantity());
                         cartViewHolder.txtProductPrice.setText(cartmodel.getPrice());
                         cartViewHolder.txtProductName.setText(cartmodel.getName());
+                        //cartViewHolder.imageHolder.setImageURI(cartmodel.);
 
                        int oneProductPrice= ((Integer.valueOf(cartmodel.getPrice()))) * Integer.valueOf(cartmodel.getQuantity());
 
