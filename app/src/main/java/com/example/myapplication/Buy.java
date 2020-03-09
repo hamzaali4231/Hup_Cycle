@@ -80,10 +80,10 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
                     @Override
                     protected void onBindViewHolder(@NonNull ProductViewHolder productViewHolder, int i, @NonNull final Products model) {
 
-
                         productViewHolder.productName.setText(model.getName());
                         productViewHolder.productDescription.setText(model.getDescription());
-                        productViewHolder.productPrice.setText("Price = " +model.getPrice());
+                        String stringPrice=Double.toString(model.getPrice());
+                        productViewHolder.productPrice.setText("Price = " +stringPrice);
                         Picasso.get().load(model.getImage()).into(productViewHolder.imageView);
 
                         productViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
