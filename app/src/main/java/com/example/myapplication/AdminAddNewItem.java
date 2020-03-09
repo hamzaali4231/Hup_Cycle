@@ -26,6 +26,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.net.URI;
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -202,6 +203,10 @@ public class AdminAddNewItem extends AppCompatActivity {
     private void saveProductInfoToDatabase() {
         //UK currency
         NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(Locale.UK);
+        //Removes symbol
+        String pattern = ((DecimalFormat) currencyFormat).toPattern();
+        String newPattern = pattern.replace("\u00A4", "").trim();
+        NumberFormat newFormat = new DecimalFormat(newPattern);
 
         HashMap<String,Object> productmap= new HashMap<>();
         productmap.put("id",productrandomkey);
@@ -210,7 +215,7 @@ public class AdminAddNewItem extends AppCompatActivity {
         productmap.put("description",description);
         productmap.put("image",downloadImageURL);
         productmap.put("category",categoryName);
-        productmap.put("price", currencyFormat.format(price));
+        productmap.put("price", newFormat.format(price));
         productmap.put("quantity", quantity);
         productmap.put("name",pname);
 
