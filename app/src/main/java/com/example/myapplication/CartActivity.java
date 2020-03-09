@@ -84,10 +84,10 @@ public  class CartActivity extends AppCompatActivity {
 //                        Picasso.get().load(cartmodel.getImageView()).into(cartViewHolder.imageHolder);
 
 
-                    //    int oneProductPrice= ((Integer.valueOf(cartmodel.getPrice()))) * Integer.valueOf(cartmodel.getQuantity());
-
-                      // totalprice=oneProductPrice+totalprice;
-                       //totalamount_txt.setText("Total is: £"+ String.valueOf(totalprice));
+//                       int oneProductPrice= ((Integer.valueOf(cartmodel.getPrice()))) * Integer.valueOf(cartmodel.getQuantity());
+//
+//                       totalprice=oneProductPrice+totalprice;
+//                       totalamount_txt.setText("Total is: £"+ String.valueOf(totalprice));
 
                         cartViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
