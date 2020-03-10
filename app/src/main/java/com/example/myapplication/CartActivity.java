@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -24,7 +23,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.squareup.picasso.Picasso;
 
 public  class CartActivity extends AppCompatActivity {
 
@@ -35,7 +33,7 @@ public  class CartActivity extends AppCompatActivity {
     private TextView totalamount_txt;
     private Context mcontext;
 
-    private int totalprice = 0;
+    private double totalprice = 0;
 //    @Override
 //    public void onAttach(final Activity activity){
 //        super.onAttach(activity);
@@ -86,9 +84,9 @@ public  class CartActivity extends AppCompatActivity {
 //                        Picasso.get().load(cartmodel.getImageView()).into(cartViewHolder.imageHolder);
 
 
-                       int oneProductPrice= ((Integer.valueOf(cartmodel.getPrice()))) * Integer.valueOf(cartmodel.getQuantity());
+                       double oneProductPrice= ((Double.valueOf(cartmodel.getPrice()))) * Integer.valueOf(cartmodel.getQuantity());
                        totalprice=oneProductPrice+totalprice;
-                       totalamount_txt.setText((totalprice));
+                       totalamount_txt.setText((String.valueOf(totalprice)));
 
                         cartViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override

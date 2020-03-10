@@ -79,7 +79,7 @@ public class AdminAddNewItem extends AppCompatActivity {
         inputProductName= (EditText) findViewById(R.id.product_name);
         inputProductDescription= (EditText) findViewById(R.id.product_description);
         inputProductPrice= (EditText) findViewById(R.id.product_price);
-        //inputProductQuantity = (EditText) findViewById(R.id.product_quantity);
+        inputProductQuantity = (EditText) findViewById(R.id.product_quantity);
         loadingbar = new ProgressDialog(this);
         dropdownMenu = (Spinner) findViewById(R.id.categorySpinner);
 
@@ -117,7 +117,7 @@ public class AdminAddNewItem extends AppCompatActivity {
 
         description= inputProductDescription.getText().toString();
         price= inputProductPrice.getText().toString();
-       // quantity =inputProductQuantity.getText().toString();
+        quantity =inputProductQuantity.getText().toString();
         pname= inputProductName.getText().toString();
 
         if(ImageUri==null){
@@ -127,8 +127,8 @@ public class AdminAddNewItem extends AppCompatActivity {
         } else if(inputProductPrice.getText().toString().isEmpty()) {
             Toast.makeText(AdminAddNewItem.this, "Please input a price", Toast.LENGTH_SHORT);
 
-//        } else if(inputProductQuantity.getText().toString().isEmpty()) {
-//            Toast.makeText(AdminAddNewItem.this,"Please input a price", Toast.LENGTH_SHORT);
+        } else if(inputProductQuantity.getText().toString().isEmpty()) {
+            Toast.makeText(AdminAddNewItem.this,"Please input a price", Toast.LENGTH_SHORT);
         } else if(TextUtils.isEmpty(pname)) {
             Toast.makeText(AdminAddNewItem.this,"Please input a product name", Toast.LENGTH_SHORT);
         } else{
@@ -214,7 +214,7 @@ public class AdminAddNewItem extends AppCompatActivity {
         productmap.put("image",downloadImageURL);
         productmap.put("category",categoryName);
         productmap.put("price", price);
-        //productmap.put("quantity", quantity);
+        productmap.put("quantity", quantity);
         productmap.put("name",pname);
 
         productsref.child(productrandomkey).updateChildren(productmap).addOnCompleteListener(
