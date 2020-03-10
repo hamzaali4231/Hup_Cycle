@@ -5,10 +5,19 @@
     <string name="title_activity_maps">Map</string>
 
     <string name="title_activity_location_page2">Map</string>
+
     <string-array name="category_names">
+        <item>Category</item>
         <item>Electronics</item>
         <item>Home</item>
         <item>Fashion</item>
         <item>Health &amp; Beauty</item>
+    </string-array>
+
+    <string-array name="sort_by">
+        <item>Sort By</item>
+        <item>Newly listed</item>
+        <item>Lowest price</item>
+        <item>Highest price</item>
     </string-array>
 </resources>

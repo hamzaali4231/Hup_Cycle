@@ -14,12 +14,21 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.Toast;
+
 import com.example.myapplication.ViewHold.ProductViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 
@@ -30,6 +39,10 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
     public DrawerLayout drawerLayout;
 
     private RecyclerView recyclerView;
+
+    private Spinner dropDownSort, dropDownCategory;
+
+    DatabaseReference itemDatabase;
 
 
     RecyclerView.LayoutManager layoutManager;
@@ -43,10 +56,32 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
 
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
         drawerLayout= findViewById(R.id.drawer_layout);
+        dropDownSort = (Spinner) findViewById(R.id.sortBySpinner);
+        dropDownCategory = (Spinner) findViewById(R.id.categorySpinner);
 
+        dropDownCategory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                itemCategorySorter();
+            }
+        });
+
+        // Drop down menus
+        ArrayAdapter<String> categoryAdapter = new ArrayAdapter<String>(getApplicationContext(),
+                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.category_names));
+
+        ArrayAdapter<String> sortAdapter = new ArrayAdapter<String>(getApplicationContext(),
+                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.sort_by));
+
+        categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dropDownCategory.setAdapter(categoryAdapter);
+
+        sortAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dropDownSort.setAdapter(sortAdapter);
+
+
+        setSupportActionBar(toolbar);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout,toolbar,
                 R.string.navigation_drawer_open,R.string.navigation_drawer_close);
@@ -65,6 +100,32 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
         recyclerView.setHasFixedSize(false);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+    }
+
+    private void itemCategorySorter() {
+        String selectedItem = dropDownSort.getSelectedItem().toString();
+
+        if (selectedItem == "Electronics") {
+            getCatergoryItem("Electronics");
+        }
+
+    }
+
+    private void getCatergoryItem(final String category) {
+        itemDatabase=FirebaseDatabase.getInstance().getReference().child("Products");
+
+        itemDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Query itemQuery = itemDatabase.orderByChild("Category").equalTo(category);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     @Override

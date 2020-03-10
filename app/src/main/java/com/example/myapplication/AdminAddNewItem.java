@@ -83,15 +83,11 @@ public class AdminAddNewItem extends AppCompatActivity {
         loadingbar = new ProgressDialog(this);
         dropdownMenu = (Spinner) findViewById(R.id.categorySpinner);
 
-        //Drop down category
-//        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(AdminAddNewItem.this,
-//                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.category_names));
-//
-//        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        dropdownMenu.setAdapter(myAdapter);
-//
-//        categoryName = dropdownMenu.getSelectedItem().toString();
+        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(AdminAddNewItem.this,
+                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.category_names));
 
+        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dropdownMenu.setAdapter(myAdapter);
 
         inputImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,6 +143,8 @@ public class AdminAddNewItem extends AppCompatActivity {
         loadingbar.setCanceledOnTouchOutside(false);
         loadingbar.show();
         Calendar calendar = Calendar.getInstance();
+
+        categoryName = dropdownMenu.getSelectedItem().toString();
 
         @SuppressLint("SimpleDateFormat") SimpleDateFormat currentDate= new SimpleDateFormat("MMM dd, yyyy");
         saveCurrentDate= currentDate.format(calendar.getTime());
