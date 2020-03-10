@@ -29,10 +29,10 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
 
     private Button addtocart;
-    private ImageView productImage;
-    private ElegantNumberButton numberButton;
     private TextView priceProduct, nameProduct, descriptionProduct, quantityProduct;
     private String productsID = "", state= "Normal";
+    private ElegantNumberButton numberButton;
+    private ImageView productImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

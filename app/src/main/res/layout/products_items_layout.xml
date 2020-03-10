@@ -5,31 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent" android:layout_width="wrap_content">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <View
-            android:id="@+id/view3"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:background="@color/slimegreen" />
-
-        <TextView
-            android:id="@+id/product_name_details3"
-            android:layout_width="353dp"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/view"
-            android:layout_alignEnd="@+id/view"
-            android:layout_marginStart="26dp"
-            android:layout_marginEnd="32dp"
-            android:fontFamily="sans-serif-medium"
-            android:text="ITEM"
-            android:textAlignment="center"
-            android:textColor="@android:color/white"
-            android:textSize="30dp" />
-    </RelativeLayout>
-
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_id"
@@ -63,6 +38,20 @@
                 android:textColor="@color/textColour"
                 android:textSize="50dp"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/product_name_details2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/view"
+                android:layout_alignEnd="@+id/view"
+                android:layout_marginStart="26dp"
+                android:layout_marginEnd="32dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="ITEM"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="30dp" />
 
             <ImageView
 

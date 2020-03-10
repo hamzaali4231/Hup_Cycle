@@ -5,6 +5,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -84,10 +86,9 @@ public  class CartActivity extends AppCompatActivity {
 //                        Picasso.get().load(cartmodel.getImageView()).into(cartViewHolder.imageHolder);
 
 
-//                       int oneProductPrice= ((Integer.valueOf(cartmodel.getPrice()))) * Integer.valueOf(cartmodel.getQuantity());
-//
-//                       totalprice=oneProductPrice+totalprice;
-//                       totalamount_txt.setText("Total is: £"+ String.valueOf(totalprice));
+                       int oneProductPrice= ((Integer.valueOf(cartmodel.getPrice()))) * Integer.valueOf(cartmodel.getQuantity());
+                       totalprice=oneProductPrice+totalprice;
+                       totalamount_txt.setText((totalprice));
 
                         cartViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override

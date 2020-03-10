@@ -41,9 +41,8 @@ public class AdminAddNewItem extends AppCompatActivity {
 
     private ImageView item1, item2, item3;
 
-    private String categoryName, description, pname, saveCurrentDate, saveCurrentTime;
-    private double price;
-    private int quantity;
+    private String categoryName, description, pname, saveCurrentDate, saveCurrentTime, price, quantity;
+   // private int quantity;
 
     private Button addNewProductButton;
 
@@ -80,18 +79,18 @@ public class AdminAddNewItem extends AppCompatActivity {
         inputProductName= (EditText) findViewById(R.id.product_name);
         inputProductDescription= (EditText) findViewById(R.id.product_description);
         inputProductPrice= (EditText) findViewById(R.id.product_price);
-        inputProductQuantity = (EditText) findViewById(R.id.product_quantity);
+        //inputProductQuantity = (EditText) findViewById(R.id.product_quantity);
         loadingbar = new ProgressDialog(this);
         dropdownMenu = (Spinner) findViewById(R.id.categorySpinner);
 
         //Drop down category
-        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(AdminAddNewItem.this,
-                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.category_names));
-
-        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        dropdownMenu.setAdapter(myAdapter);
-
-        categoryName = dropdownMenu.getSelectedItem().toString();
+//        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(AdminAddNewItem.this,
+//                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.category_names));
+//
+//        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        dropdownMenu.setAdapter(myAdapter);
+//
+//        categoryName = dropdownMenu.getSelectedItem().toString();
 
 
         inputImage.setOnClickListener(new View.OnClickListener() {
@@ -121,8 +120,8 @@ public class AdminAddNewItem extends AppCompatActivity {
     private void validateProductData() {
 
         description= inputProductDescription.getText().toString();
-        price= Double.parseDouble(inputProductPrice.getText().toString());
-        quantity = Integer.parseInt(inputProductQuantity.getText().toString());
+        price= inputProductPrice.getText().toString();
+       // quantity =inputProductQuantity.getText().toString();
         pname= inputProductName.getText().toString();
 
         if(ImageUri==null){
@@ -130,9 +129,10 @@ public class AdminAddNewItem extends AppCompatActivity {
         } else if(TextUtils.isEmpty(description)) {
             Toast.makeText(AdminAddNewItem.this,"Please input a description", Toast.LENGTH_SHORT);
         } else if(inputProductPrice.getText().toString().isEmpty()) {
-            Toast.makeText(AdminAddNewItem.this,"Please input a price", Toast.LENGTH_SHORT);
-        } else if(inputProductQuantity.getText().toString().isEmpty()) {
-            Toast.makeText(AdminAddNewItem.this,"Please input a price", Toast.LENGTH_SHORT);
+            Toast.makeText(AdminAddNewItem.this, "Please input a price", Toast.LENGTH_SHORT);
+
+//        } else if(inputProductQuantity.getText().toString().isEmpty()) {
+//            Toast.makeText(AdminAddNewItem.this,"Please input a price", Toast.LENGTH_SHORT);
         } else if(TextUtils.isEmpty(pname)) {
             Toast.makeText(AdminAddNewItem.this,"Please input a product name", Toast.LENGTH_SHORT);
         } else{
@@ -204,9 +204,9 @@ public class AdminAddNewItem extends AppCompatActivity {
         //UK currency
         NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(Locale.UK);
         //Removes symbol
-        String pattern = ((DecimalFormat) currencyFormat).toPattern();
-        String newPattern = pattern.replace("\u00A4", "").trim();
-        NumberFormat newFormat = new DecimalFormat(newPattern);
+//        String pattern = ((DecimalFormat) currencyFormat).toPattern();
+//        String newPattern = pattern.replace("\u00A4", "").trim();
+//        NumberFormat newFormat = new DecimalFormat(newPattern);
 
         HashMap<String,Object> productmap= new HashMap<>();
         productmap.put("id",productrandomkey);
@@ -215,8 +215,8 @@ public class AdminAddNewItem extends AppCompatActivity {
         productmap.put("description",description);
         productmap.put("image",downloadImageURL);
         productmap.put("category",categoryName);
-        productmap.put("price", newFormat.format(price));
-        productmap.put("quantity", quantity);
+        productmap.put("price", price);
+        //productmap.put("quantity", quantity);
         productmap.put("name",pname);
 
         productsref.child(productrandomkey).updateChildren(productmap).addOnCompleteListener(
