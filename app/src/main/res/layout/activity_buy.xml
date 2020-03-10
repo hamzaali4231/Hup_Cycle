@@ -8,56 +8,78 @@
     android:fitsSystemWindows="true"
     tools:context=".Buy"
     tools:openDrawer="start">
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
 
     <include
         layout="@layout/app_bar_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-</LinearLayout>
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
 
-    <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+        <View
+            android:id="@+id/view2"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary"
-            android:elevation="0dp"
-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
+            android:layout_height="48dp"
+            android:layout_alignTop="@+id/fragment_container"
+            android:layout_marginTop="0dp"
+            android:background="@color/slimegreen" />
 
-        <LinearLayout
+
+        <View
+            android:id="@+id/view10"
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:layout_alignTop="@+id/fragment_container"
+            android:layout_marginTop="48dp"
+            android:background="@color/slimegreen" />
+
+        <Spinner
+            android:id="@+id/sortBySpinner"
+            android:layout_width="189dp"
+            android:layout_height="45dp"
+            android:layout_below="@+id/view2"
+            android:layout_alignStart="@+id/view10"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="9dp" />
+
+        <Spinner
+            android:id="@+id/categorySpinner"
+            android:layout_width="185dp"
+            android:layout_height="45dp"
+            android:layout_below="@+id/view2"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="7dp"
+            android:layout_toEndOf="@+id/sortBySpinner" />
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <View
-                android:id="@+id/view2"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:background="@color/slimegreen" />
-
-
-
-        </LinearLayout>
-
+            android:layout_alignStart="@+id/view"
+            android:layout_alignTop="@+id/fragment_container"
+            android:layout_alignEnd="@+id/view"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="BUY"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="30dp" />
 
         <FrameLayout
-                android:id="@+id/fragment_container"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+            android:id="@+id/fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
 
-                />
-        </LinearLayout>
+            >
+
+        </FrameLayout>
+    </RelativeLayout>
     <com.google.android.material.navigation.NavigationView
-       android:layout_width="match_parent"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:id="@+id/nav_view"
