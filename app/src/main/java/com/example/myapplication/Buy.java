@@ -8,6 +8,8 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,8 +19,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.Toast;
-
 import com.example.myapplication.ViewHold.ProductViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -60,6 +60,8 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
         dropDownSort = (Spinner) findViewById(R.id.sortBySpinner);
         dropDownCategory = (Spinner) findViewById(R.id.categorySpinner);
 
+
+
         dropDownCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -91,11 +93,12 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout,toolbar,
                 R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+
         drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
 //        if (savedInstanceState==null) {
 //            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
 //                    new Login()).commit();
@@ -106,6 +109,7 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
         recyclerView.setHasFixedSize(false);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+
     }
 
     private void itemCategorySorter() {
@@ -138,19 +142,21 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
     protected void onStart() {
         super.onStart();
 
+
         FirebaseRecyclerOptions <Products> options =
                 new FirebaseRecyclerOptions.Builder<Products>().setQuery(productDatabaseReference,Products.class)
                         .build();
 
         FirebaseRecyclerAdapter <Products, ProductViewHolder> adapter = new
                 FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
+                    @SuppressLint("SetTextI18n")
                     @Override
                     protected void onBindViewHolder(@NonNull ProductViewHolder productViewHolder, int i, @NonNull final Products model) {
 
 
                         productViewHolder.productName.setText(model.getName());
                         productViewHolder.productDescription.setText(model.getDescription());
-                        productViewHolder.productPrice.setText("Price = " + model.getPrice());
+                        productViewHolder.productPrice.setText("Price = £" + model.getPrice());
                         Picasso.get().load(model.getImage()).into(productViewHolder.imageView);
 
                         productViewHolder.itemView.setOnClickListener(new View.OnClickListener() {

@@ -2,8 +2,12 @@ package com.example.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +26,7 @@ public class Login extends AppCompatActivity {
     private EditText password;
     private TextView register;
     Button loginb;
+    private CheckBox checkBox;
 
     DatabaseReference logindatabaseReference ;
     @Override
@@ -33,6 +38,20 @@ public class Login extends AppCompatActivity {
         userName = (EditText) findViewById(R.id.usernameField);
         password = (EditText) findViewById(R.id.confirmPasswordField);
         register = (TextView) findViewById(R.id.registerTextview);
+        checkBox = findViewById(R.id.showPassword);
+
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }
+                else{
+                    password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                }
+            }
+        });
+
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,6 +60,8 @@ public class Login extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
 
         loginb.setOnClickListener(new View.OnClickListener() {
             @Override

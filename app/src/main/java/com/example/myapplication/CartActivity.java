@@ -24,8 +24,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.text.NumberFormat;
-import java.text.ParseException;
 
 public  class CartActivity extends AppCompatActivity {
 
