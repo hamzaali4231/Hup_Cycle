@@ -60,11 +60,17 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
         dropDownSort = (Spinner) findViewById(R.id.sortBySpinner);
         dropDownCategory = (Spinner) findViewById(R.id.categorySpinner);
 
-        dropDownCategory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        dropDownCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 itemCategorySorter();
             }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+
         });
 
         // Drop down menus

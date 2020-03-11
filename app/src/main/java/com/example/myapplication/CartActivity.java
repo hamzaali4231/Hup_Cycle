@@ -24,6 +24,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.NumberFormat;
+import java.text.ParseException;
+
 public  class CartActivity extends AppCompatActivity {
 
 
@@ -83,8 +86,11 @@ public  class CartActivity extends AppCompatActivity {
                         cartViewHolder.txtProductName.setText(cartmodel.getName());
 //                        Picasso.get().load(cartmodel.getImageView()).into(cartViewHolder.imageHolder);
 
+                        String productPrice= cartmodel.getPrice();
+                        productPrice= productPrice.replaceAll("[^\\d.]", "");
 
-                       double oneProductPrice= ((Double.valueOf(cartmodel.getPrice()))) * Integer.valueOf(cartmodel.getQuantity());
+
+                        double oneProductPrice= ((Double.valueOf(productPrice))) * Integer.valueOf(cartmodel.getQuantity());
                        totalprice=oneProductPrice+totalprice;
                        totalamount_txt.setText((String.valueOf(totalprice)));
 

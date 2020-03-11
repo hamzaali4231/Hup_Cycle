@@ -200,9 +200,9 @@ public class AdminAddNewItem extends AppCompatActivity {
         //UK currency
         NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(Locale.UK);
         //Removes symbol
-//        String pattern = ((DecimalFormat) currencyFormat).toPattern();
-//        String newPattern = pattern.replace("\u00A4", "").trim();
-//        NumberFormat newFormat = new DecimalFormat(newPattern);
+        String pattern = ((DecimalFormat) currencyFormat).toPattern();
+         String newPattern = pattern.replace("\u00A4", "").trim();
+        NumberFormat newFormat = new DecimalFormat(newPattern);
 
         HashMap<String,Object> productmap= new HashMap<>();
         productmap.put("id",productrandomkey);

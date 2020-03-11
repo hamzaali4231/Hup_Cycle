@@ -3,6 +3,7 @@ package com.example.myapplication;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -115,6 +116,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         DatabaseReference productsref = FirebaseDatabase.getInstance().getReference().child("Products");
 
         productsref.child(productsID).addValueEventListener(new ValueEventListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
