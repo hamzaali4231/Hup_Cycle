@@ -38,7 +38,7 @@ public class Login extends AppCompatActivity {
         userName = (EditText) findViewById(R.id.usernameField);
         password = (EditText) findViewById(R.id.confirmPasswordField);
         register = (TextView) findViewById(R.id.registerTextview);
-        checkBox = findViewById(R.id.showPassword);
+        checkBox = (CheckBox) findViewById(R.id.showPassword);
 
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
