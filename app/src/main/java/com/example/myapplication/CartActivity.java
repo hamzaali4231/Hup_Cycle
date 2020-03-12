@@ -34,7 +34,7 @@ public  class CartActivity extends AppCompatActivity {
     private TextView totalamount_txt;
     private Context mcontext;
 
-    private double totalprice = 0;
+    private double totalprice = 0.00;
 //    @Override
 //    public void onAttach(final Activity activity){
 //        super.onAttach(activity);
@@ -90,7 +90,7 @@ public  class CartActivity extends AppCompatActivity {
 
                         double oneProductPrice= ((Double.valueOf(productPrice))) * Integer.valueOf(cartmodel.getQuantity());
                        totalprice=oneProductPrice+totalprice;
-                       totalamount_txt.setText((String.valueOf(totalprice)));
+                       totalamount_txt.setText((String.valueOf("£"+totalprice)));
 
                         cartViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override

@@ -11,6 +11,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+
 public class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     public TextView productName, productDescription, productPrice;

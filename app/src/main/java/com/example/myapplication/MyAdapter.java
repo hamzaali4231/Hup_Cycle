@@ -13,6 +13,7 @@ import com.example.myapplication.ViewHold.ProductViewHolder;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -21,20 +22,20 @@ import androidx.recyclerview.widget.RecyclerView;
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ProductViewHolder> {
 
     Context context;
-    ArrayList<Products> products;
+    List<Products> products;
 
-    public MyAdapter(Context c , ArrayList<Products> p)
+    public MyAdapter(Context context , List<Products> products)
     {
-        context = c;
-        products = p;
+        this.context = context;
+        this.products = products;
     }
 
-    @NonNull
+
     @Override
-    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MyAdapter.ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.products_items_layout,
                 parent,false);
-        return new ProductViewHolder(view);
+        return new ProductViewHolder(view.getRootView());
     }
 
     @Override
@@ -43,6 +44,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ProductViewHolder>
         productViewHolder.productDescription.setText(products.get(i).getDescription());
         productViewHolder.productPrice.setText("Price = " + products.get(i).getPrice());
         Picasso.get().load(products.get(i).getImage()).into(productViewHolder.imageView);
+
+        Products product= products.get(i);
 
         productViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +62,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ProductViewHolder>
 
     @Override
     public int getItemCount() {
-        return 0;
+        return products.size();
     }
 
     class ProductViewHolder extends RecyclerView.ViewHolder{

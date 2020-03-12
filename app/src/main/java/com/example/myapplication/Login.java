@@ -40,6 +40,7 @@ public class Login extends AppCompatActivity {
         register = (TextView) findViewById(R.id.registerTextview);
         checkBox = (CheckBox) findViewById(R.id.showPassword);
 
+
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
