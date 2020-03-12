@@ -155,6 +155,8 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
         } else if (selectedCategory.equals("Health & Beauty")) {
             itemQuery = productDatabaseReference.orderByChild("category").equalTo(selectedCategory);
             getCategoryItem();
+        } else if (selectedCategory.equals("All Category")){
+            defaultGetItems();
         }
 
     }
