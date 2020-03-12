@@ -32,6 +32,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
 public class Buy extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
@@ -41,7 +42,7 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
     public DrawerLayout drawerLayout;
 
     private RecyclerView recyclerView;
-
+    public Query itemQuery;
     private Spinner dropDownSort, dropDownCategory;
 
     DatabaseReference itemDatabase;
@@ -69,6 +70,7 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 itemCategorySorter();
             }
+
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -112,22 +114,18 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
 
     }
 
-    Query itemQuery = null;
 
     private void itemCategorySorter() {
         String selectedItem = dropDownCategory.getSelectedItem().toString();
-        itemDatabase=FirebaseDatabase.getInstance().getReference().child("Products");
 
-        if (selectedItem == "Electronics") {
-            itemQuery = itemDatabase.orderByChild("Category").equalTo(selectedItem);
-            System.out.println("************************************TEST");
-            sss();
+
+        if (selectedItem.equals("Electronics")) {
+            itemQuery = productDatabaseReference.orderByChild("category").equalTo(selectedItem);
+            getCategoryItem();
         }
-
     }
 
-    public void sss() {
-        System.out.println("************************************" + itemQuery);
+    public void getCategoryItem() {
         itemQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -143,11 +141,12 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
 
                 adapter = new MyAdapter(Buy.this, list);
                 recyclerView.setAdapter(adapter);
+
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                Toast.makeText(Buy.this, "Something went wrong", Toast.LENGTH_SHORT).show();
             }
         });
     }
