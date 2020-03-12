@@ -130,6 +130,7 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 System.out.println("************************** " + dataSnapshot);
+                System.out.println(" ");
                 list = new ArrayList<Products>();
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
