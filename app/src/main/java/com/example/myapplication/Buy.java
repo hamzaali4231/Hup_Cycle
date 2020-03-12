@@ -32,7 +32,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 
 
 public class Buy extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
@@ -41,6 +41,7 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
 
     public DrawerLayout drawerLayout;
 
+    public String selectedSort;
     private RecyclerView recyclerView;
     public Query itemQuery;
     private Spinner dropDownSort, dropDownCategory;
@@ -65,10 +66,22 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
         dropDownSort = (Spinner) findViewById(R.id.sortBySpinner);
         dropDownCategory = (Spinner) findViewById(R.id.categorySpinner);
 
+        dropDownSort.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                itemSortFilter();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
         dropDownCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                itemCategorySorter();
+                itemCategoryFilter();
             }
 
 
@@ -114,15 +127,36 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
 
     }
 
+    private void itemSortFilter() {
+         selectedSort = dropDownSort.getSelectedItem().toString();
 
-    private void itemCategorySorter() {
-        String selectedItem = dropDownCategory.getSelectedItem().toString();
+        if (selectedSort.equals("Lowest Price") || selectedSort.equals("Highest Price")) {
+            itemQuery = productDatabaseReference.orderByChild("price");
+            getCategoryItem();
+        } else if (selectedSort.equals("Recommended")){
+            defaultGetItems();
+        }
+
+    }
+
+    private void itemCategoryFilter() {
+        String selectedCategory = dropDownCategory.getSelectedItem().toString();
 
 
-        if (selectedItem.equals("Electronics")) {
-            itemQuery = productDatabaseReference.orderByChild("category").equalTo(selectedItem);
+        if (selectedCategory.equals("Electronics")) {
+            itemQuery = productDatabaseReference.orderByChild("category").equalTo(selectedCategory);
+            getCategoryItem();
+        } else if (selectedCategory.equals("Home")) {
+            itemQuery = productDatabaseReference.orderByChild("category").equalTo(selectedCategory);
+            getCategoryItem();
+        } else if (selectedCategory.equals("Fashion")) {
+            itemQuery = productDatabaseReference.orderByChild("category").equalTo(selectedCategory);
+            getCategoryItem();
+        } else if (selectedCategory.equals("Health & Beauty")) {
+            itemQuery = productDatabaseReference.orderByChild("category").equalTo(selectedCategory);
             getCategoryItem();
         }
+
     }
 
     public void getCategoryItem() {
@@ -139,6 +173,10 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
                     Toast.makeText(Buy.this, "Empty", Toast.LENGTH_LONG).show();
                 }
 
+                if (selectedSort.equals("Highest Price")){
+                    Collections.reverse(list);
+                }
+
                 adapter = new MyAdapter(Buy.this, list);
                 recyclerView.setAdapter(adapter);
 
@@ -151,11 +189,7 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
         });
     }
 
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
+    private void defaultGetItems() {
         FirebaseRecyclerOptions <Products> options =
                 new FirebaseRecyclerOptions.Builder<Products>().setQuery(productDatabaseReference,Products.class)
                         .build();
@@ -168,7 +202,7 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
 
                         productViewHolder.productName.setText(model.getName());
                         productViewHolder.productDescription.setText(model.getDescription());
-                        productViewHolder.productPrice.setText("Price = " + model.getPrice());
+                        productViewHolder.productPrice.setText("Price: £" + model.getPrice());
                         Picasso.get().load(model.getImage()).into(productViewHolder.imageView);
 
                         productViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -196,15 +230,14 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
 
         recyclerView.setAdapter(adapter);
         adapter.startListening();
+    }
 
-//        NavigationView navigationView = findViewById(R.id.nav_view);
-//        navigationView.setNavigationItemSelectedListener(this);
 
-//        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Login()).commit();
-//        navigationView.setCheckedItem(R.id.nav_login);
-////>>>>>>> Stashed changes
-//        Intent intent = new Intent(Buy.this, Login.class);
-//        startActivity(intent);
+    @Override
+    protected void onStart() {
+        super.onStart();
+        defaultGetItems();
+
     }
 
 

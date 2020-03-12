@@ -7,7 +7,7 @@
     <string name="title_activity_location_page2">Map</string>
 
     <string-array name="category_names">
-        <item>Category</item>
+        <item>All Category</item>
         <item>Electronics</item>
         <item>Home</item>
         <item>Fashion</item>
@@ -15,9 +15,8 @@
     </string-array>
 
     <string-array name="sort_by">
-        <item>Sort By</item>
-        <item>Newly listed</item>
-        <item>Lowest price</item>
-        <item>Highest price</item>
+        <item>Recommended</item>
+        <item>Lowest Price</item>
+        <item>Highest Price</item>
     </string-array>
 </resources>

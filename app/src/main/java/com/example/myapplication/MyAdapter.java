@@ -42,7 +42,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ProductViewHolder>
     public void onBindViewHolder(@NonNull ProductViewHolder productViewHolder, final int i) {
         productViewHolder.productName.setText(products.get(i).getName());
         productViewHolder.productDescription.setText(products.get(i).getDescription());
-        productViewHolder.productPrice.setText("Price = " + products.get(i).getPrice());
+        productViewHolder.productPrice.setText("Price: £" + products.get(i).getPrice());
         Picasso.get().load(products.get(i).getImage()).into(productViewHolder.imageView);
 
         Products product= products.get(i);
