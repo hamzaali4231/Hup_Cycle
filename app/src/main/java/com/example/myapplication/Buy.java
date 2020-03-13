@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -9,11 +10,13 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -33,6 +36,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 
 public class Buy extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
@@ -41,10 +45,13 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
 
     public DrawerLayout drawerLayout;
 
-    public String selectedSort;
+    public String selectedSort, selectedCategory;
     private RecyclerView recyclerView;
     public Query itemQuery;
     private Spinner dropDownSort, dropDownCategory;
+
+    int check =0;
+    int check2 =0;
 
     DatabaseReference itemDatabase;
 
@@ -69,7 +76,9 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
         dropDownSort.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                itemSortFilter();
+                if (++check > 1){
+                    itemSortFilter();
+                }
             }
 
             @Override
@@ -81,9 +90,10 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
         dropDownCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                itemCategoryFilter();
+                if (++check2 > 1) {
+                    itemCategoryFilter();
+                }
             }
-
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -114,11 +124,6 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-//        if (savedInstanceState==null) {
-//            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-//                    new Login()).commit();
-//            navigationView.setCheckedItem(R.id.nav_view);
-//        }
 
         recyclerView = findViewById(R.id.recycler_menu);
         recyclerView.setHasFixedSize(false);
@@ -130,17 +135,36 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
     private void itemSortFilter() {
          selectedSort = dropDownSort.getSelectedItem().toString();
 
-        if (selectedSort.equals("Lowest Price") || selectedSort.equals("Highest Price")) {
-            itemQuery = productDatabaseReference.orderByChild("price");
-            getCategoryItem();
+        if (selectedSort.equals("Lowest Price")) {
+            Collections.sort(list, new Comparator<Products>() {
+                @Override
+                public int compare(Products o1, Products o2) {
+                    return Integer.compare(Integer.parseInt(o1.getPrice()), Integer.parseInt(o2.getPrice()));
+                }
+            });
+
+        } else if (selectedSort.equals("Highest Price")) {
+            Collections.sort(list, new Comparator<Products>() {
+                @Override
+                public int compare(Products o1, Products o2) {
+                    return Integer.compare(Integer.parseInt(o2.getPrice()), Integer.parseInt(o1.getPrice()));
+                }
+            });
+
         } else if (selectedSort.equals("Recommended")){
             defaultGetItems();
         }
 
+        if (!selectedSort.equals("Recommended")){
+            adapter = new MyAdapter(Buy.this, list);
+            recyclerView.setAdapter(adapter);
+        }
+
+
     }
 
     private void itemCategoryFilter() {
-        String selectedCategory = dropDownCategory.getSelectedItem().toString();
+        selectedCategory = dropDownCategory.getSelectedItem().toString();
 
 
         if (selectedCategory.equals("Electronics")) {
@@ -158,7 +182,6 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
         } else if (selectedCategory.equals("All Category")){
             defaultGetItems();
         }
-
     }
 
     public void getCategoryItem() {
@@ -175,10 +198,6 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
                     Toast.makeText(Buy.this, "Empty", Toast.LENGTH_LONG).show();
                 }
 
-                if (selectedSort.equals("Highest Price")){
-                    Collections.reverse(list);
-                }
-
                 adapter = new MyAdapter(Buy.this, list);
                 recyclerView.setAdapter(adapter);
 
@@ -189,6 +208,8 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
                 Toast.makeText(Buy.this, "Something went wrong", Toast.LENGTH_SHORT).show();
             }
         });
+
+        itemSortFilter();
     }
 
     private void defaultGetItems() {
