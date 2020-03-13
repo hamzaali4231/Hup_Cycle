@@ -136,18 +136,20 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
          selectedSort = dropDownSort.getSelectedItem().toString();
 
         if (selectedSort.equals("Lowest Price")) {
+            System.out.println("****************************** LOWEST");
             Collections.sort(list, new Comparator<Products>() {
                 @Override
-                public int compare(Products o1, Products o2) {
-                    return Integer.compare(Integer.parseInt(o1.getPrice()), Integer.parseInt(o2.getPrice()));
+                public int compare(Products item1, Products item2) {
+                    return Integer.compare(Integer.parseInt(item1.getPrice()), Integer.parseInt(item2.getPrice()));
                 }
             });
 
         } else if (selectedSort.equals("Highest Price")) {
+            System.out.println("****************************** HIGHEST");
             Collections.sort(list, new Comparator<Products>() {
                 @Override
-                public int compare(Products o1, Products o2) {
-                    return Integer.compare(Integer.parseInt(o2.getPrice()), Integer.parseInt(o1.getPrice()));
+                public int compare(Products item1, Products item2) {
+                    return Integer.compare(Integer.parseInt(item2.getPrice()), Integer.parseInt(item1.getPrice()));
                 }
             });
 
@@ -156,6 +158,7 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
         }
 
         if (!selectedSort.equals("Recommended")){
+            System.out.println("****************************** ADAPTER");
             adapter = new MyAdapter(Buy.this, list);
             recyclerView.setAdapter(adapter);
         }
@@ -165,7 +168,6 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
 
     private void itemCategoryFilter() {
         selectedCategory = dropDownCategory.getSelectedItem().toString();
-
 
         if (selectedCategory.equals("Electronics")) {
             itemQuery = productDatabaseReference.orderByChild("category").equalTo(selectedCategory);
@@ -211,7 +213,7 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
 
         itemSortFilter();
     }
-
+    
     private void defaultGetItems() {
         FirebaseRecyclerOptions <Products> options =
                 new FirebaseRecyclerOptions.Builder<Products>().setQuery(productDatabaseReference,Products.class)
@@ -221,7 +223,6 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
                 FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
                     @Override
                     protected void onBindViewHolder(@NonNull ProductViewHolder productViewHolder, int i, @NonNull final Products model) {
-
 
                         productViewHolder.productName.setText(model.getName());
                         productViewHolder.productDescription.setText(model.getDescription());
@@ -260,7 +261,6 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
     protected void onStart() {
         super.onStart();
         defaultGetItems();
-
     }
 
 
