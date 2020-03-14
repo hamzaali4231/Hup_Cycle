@@ -7,9 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.myapplication.Interface.ItemClickListener;
-import com.example.myapplication.ViewHold.ProductViewHolder;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -42,7 +40,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ProductViewHolder>
     public void onBindViewHolder(@NonNull ProductViewHolder productViewHolder, final int i) {
         productViewHolder.productName.setText(products.get(i).getName());
         productViewHolder.productDescription.setText(products.get(i).getDescription());
-        productViewHolder.productPrice.setText("Price: £" + products.get(i).getPrice());
+        productViewHolder.productPrice.setText("Price = £" + products.get(i).getPrice());
         Picasso.get().load(products.get(i).getImage()).into(productViewHolder.imageView);
 
         Products product= products.get(i);

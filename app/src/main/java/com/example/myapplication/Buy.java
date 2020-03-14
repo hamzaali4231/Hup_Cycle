@@ -9,6 +9,8 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -230,6 +232,7 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
 
         FirebaseRecyclerAdapter <Products, ProductViewHolder> adapter = new
                 FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
+                    @SuppressLint("SetTextI18n")
                     @Override
                     protected void onBindViewHolder(@NonNull ProductViewHolder productViewHolder, int i, @NonNull final Products model) {
 
