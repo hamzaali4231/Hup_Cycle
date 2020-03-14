@@ -70,9 +70,10 @@ public  class CartActivity extends AppCompatActivity {
         super.onStart();
 
         final DatabaseReference cartlistref = FirebaseDatabase.getInstance().getReference()
-                .child("Cart List");
+                .child("Cart List").child("User View").child("Products");
+
         final FirebaseRecyclerOptions<Cart> options = new FirebaseRecyclerOptions.Builder<Cart>().setQuery
-                (cartlistref.child("User View").child("Products"),Cart.class).build();
+                (cartlistref.orderByChild("user").equalTo(getIntent().getStringExtra("loginUsername")),Cart.class).build();
 
         FirebaseRecyclerAdapter<Cart, CartViewHolder> adapter = new
                 FirebaseRecyclerAdapter<Cart, CartViewHolder>(options) {
@@ -82,15 +83,15 @@ public  class CartActivity extends AppCompatActivity {
                         cartViewHolder.txtProductQuantity.setText(cartmodel.getQuantity());
                         cartViewHolder.txtProductPrice.setText(cartmodel.getPrice());
                         cartViewHolder.txtProductName.setText(cartmodel.getName());
-//                        Picasso.get().load(cartmodel.getImageView()).into(cartViewHolder.imageHolder);
+//                      Picasso.get().load(cartmodel.getImageView()).into(cartViewHolder.imageHolder);
 
                         String productPrice= cartmodel.getPrice();
                         productPrice= productPrice.replaceAll("[^\\d.]", "");
 
 
                         double oneProductPrice= ((Double.valueOf(productPrice))) * Integer.valueOf(cartmodel.getQuantity());
-                       totalprice=oneProductPrice+totalprice;
-                       totalamount_txt.setText((String.valueOf("£"+totalprice)));
+                        totalprice=oneProductPrice+totalprice;
+                        totalamount_txt.setText((String.valueOf("£"+totalprice)));
 
                         cartViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -111,15 +112,13 @@ public  class CartActivity extends AppCompatActivity {
                                             startActivity(intent);
                                         }
                                         if(i==1){
-                                            cartlistref.child("User View").child("Products").child(cartmodel.getId()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            cartlistref.child(cartmodel.getId()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
 
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     if(task.isSuccessful()){
                                                         Toast.makeText(CartActivity.this, "Item deleted", Toast.LENGTH_SHORT).show();
-                                                        Intent intent = new Intent(CartActivity.this, CartActivity.class);
                                                         System.out.println("Hello" +cartlistref);
-                                                        startActivity(intent);
                                                     }
                                                 }
                                             });

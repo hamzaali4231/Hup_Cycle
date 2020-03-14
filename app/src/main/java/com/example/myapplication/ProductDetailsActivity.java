@@ -56,15 +56,17 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
        getProductDetails(productsID);
 
-       numberButton.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-               if (Integer.valueOf(numberButton.getNumber()) >= Integer.valueOf(String.valueOf(quantityProduct))) {
-                   numberButton.setNumber(String.valueOf(quantityProduct));
-                   Toast.makeText(ProductDetailsActivity.this, "Error", Toast.LENGTH_SHORT).show();
-               }
-           }
-       });
+//       numberButton.setOnValueChangeListener(new ElegantNumberButton.OnValueChangeListener() {
+//           @Override
+//           public void onValueChange(ElegantNumberButton view, int oldValue, int newValue) {
+//               if (oldValue >= Integer.valueOf(String.valueOf(quantityProduct)) ) {
+//                   System.out.println("***********************" + Integer.valueOf(numberButton.getNumber()));
+//                   System.out.println("***********************" + Integer.valueOf(String.valueOf(quantityProduct)));
+//                   numberButton.setNumber(String.valueOf(quantityProduct));
+//                   Toast.makeText(ProductDetailsActivity.this, "Error", Toast.LENGTH_SHORT).show();
+//               }
+//           }
+//       });
 
        addtocart.setOnClickListener(new View.OnClickListener() {
            @Override
@@ -90,6 +92,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
         final HashMap<String, Object> cartMap = new HashMap<>();
         cartMap.put("id", productsID);
+        cartMap.put("user", getIntent().getStringExtra("loginUsername"));
         cartMap.put("name", nameProduct.getText().toString());
         cartMap.put("price", priceProduct.getText().toString());
         //cartMap.put("ImageUrl",productImage);

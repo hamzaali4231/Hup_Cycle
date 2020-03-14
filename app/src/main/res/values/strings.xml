@@ -8,10 +8,14 @@
 
     <string-array name="category_names">
         <item>All Category</item>
+        <item>Art</item>
         <item>Electronics</item>
-        <item>Home</item>
         <item>Fashion</item>
+        <item>Home</item>
         <item>Health &amp; Beauty</item>
+        <item>Home Garden</item>
+        <item>Motor</item>
+        <item>Sports</item>
     </string-array>
 
     <string-array name="sort_by">

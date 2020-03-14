@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,9 +29,11 @@ import com.google.firebase.storage.UploadTask;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 
 import androidx.annotation.NonNull;
@@ -38,6 +41,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Sell extends AppCompatActivity {
+
+    public List<String> sortCategory = new ArrayList<>();
+
     private String categoryName, description, pname, saveCurrentDate, saveCurrentTime, price, quantity;
 
     private Button addNewProductButton;
@@ -79,11 +85,32 @@ public class Sell extends AppCompatActivity {
         loadingbar = new ProgressDialog(this);
         dropdownMenu = (Spinner) findViewById(R.id.categorySpinner);
 
-        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(Sell.this,
-                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.category_names));
+        sortCategory.add("All Category");
+        sortCategory.add("Art");
+        sortCategory.add("Electronics");
+        sortCategory.add("Fashion");
+        sortCategory.add("Home");
+        sortCategory.add("Home & Beauty");
+        sortCategory.add("Home Garden");
+        sortCategory.add("Motor");
+        sortCategory.add("Sports");
+        final int listCategorySize = sortCategory.size()-1;
 
-        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        dropdownMenu.setAdapter(myAdapter);
+        ArrayAdapter<String> categoryAdapter = new ArrayAdapter<String>(getApplicationContext(),
+                android.R.layout.simple_list_item_1, sortCategory){
+
+            public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                return super.getDropDownView(position + 1, convertView, parent);
+            }
+
+            @Override
+            public int getCount() {
+                return(listCategorySize); // Truncate the list
+            }
+        };
+
+        categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dropdownMenu.setAdapter(categoryAdapter);
 
         inputImage.setOnClickListener(new View.OnClickListener() {
             @Override
