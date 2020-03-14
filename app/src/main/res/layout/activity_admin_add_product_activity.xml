@@ -8,7 +8,7 @@
         android:layout_width="350dp"
         android:layout_height="200dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/ic_action_lock"
+        android:src="@drawable/image_icon"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"/>
 

@@ -8,7 +8,7 @@
         android:layout_width="350dp"
         android:layout_height="200dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/ic_action_lock"
+        android:src="@drawable/image_icon"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"/>
 
@@ -41,12 +41,26 @@
         android:layout_width="162dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/product_description"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="203dp"
+        android:layout_alignParentEnd="true"
         android:layout_marginLeft="45dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="46dp"
         android:layout_marginRight="45dp"
-        android:hint="Product Price"
+        android:hint="Price"
+        android:inputType="textMultiLine"
+        android:padding="20dp" />
+
+    <EditText
+        android:id="@+id/product_quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/product_description"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="45dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="45dp"
+        android:hint="Quantity"
         android:inputType="textMultiLine"
         android:padding="20dp" />
 

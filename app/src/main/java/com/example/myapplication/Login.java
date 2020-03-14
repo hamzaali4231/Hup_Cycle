@@ -87,6 +87,7 @@ public class Login extends AppCompatActivity {
                             if(!user.getUsername().equals("test")){
                                 Toast.makeText(Login.this,"Login Successful",Toast.LENGTH_LONG).show();
                                 Intent intent =new Intent(getApplicationContext(), MainMenu.class);
+                                intent.putExtra("loginUsername", user.getUsername());
                                 startActivity(intent);
                             } else {
                                 Toast.makeText(Login.this,"Login Successful",Toast.LENGTH_LONG).show();
@@ -94,7 +95,7 @@ public class Login extends AppCompatActivity {
                                 startActivity(intent);
                             }
                         } else {
-                            Toast.makeText(Login.this,"Password is Incorreghfgdhjgdgfhjct",Toast.LENGTH_LONG).show();
+                            Toast.makeText(Login.this,"Password is Incorrect",Toast.LENGTH_LONG).show();
                         }
                     } else {
                         Toast.makeText(Login.this,"Username cannot be empty",Toast.LENGTH_LONG).show();

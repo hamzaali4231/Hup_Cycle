@@ -136,7 +136,6 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
          selectedSort = dropDownSort.getSelectedItem().toString();
 
         if (selectedSort.equals("Lowest Price")) {
-            System.out.println("****************************** LOWEST");
             Collections.sort(list, new Comparator<Products>() {
                 @Override
                 public int compare(Products item1, Products item2) {
@@ -145,7 +144,6 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
             });
 
         } else if (selectedSort.equals("Highest Price")) {
-            System.out.println("****************************** HIGHEST");
             Collections.sort(list, new Comparator<Products>() {
                 @Override
                 public int compare(Products item1, Products item2) {
@@ -153,12 +151,11 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
                 }
             });
 
-        } else if (selectedSort.equals("Recommended")){
+        } else if (selectedSort.equals("Recommended") && selectedCategory.equals("All Category")){
             defaultGetItems();
         }
 
         if (!selectedSort.equals("Recommended")){
-            System.out.println("****************************** ADAPTER");
             adapter = new MyAdapter(Buy.this, list);
             recyclerView.setAdapter(adapter);
         }
@@ -184,6 +181,8 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
         } else if (selectedCategory.equals("All Category")){
             defaultGetItems();
         }
+
+        dropDownSort.setSelection(0);
     }
 
     public void getCategoryItem() {
@@ -210,8 +209,6 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
                 Toast.makeText(Buy.this, "Something went wrong", Toast.LENGTH_SHORT).show();
             }
         });
-
-        itemSortFilter();
     }
     
     private void defaultGetItems() {
