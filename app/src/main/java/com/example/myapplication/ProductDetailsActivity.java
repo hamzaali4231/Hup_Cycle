@@ -30,7 +30,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
 
     private Button addtocart;
-    private TextView priceProduct, nameProduct, descriptionProduct, quantityProduct;
+    private TextView priceProduct, nameProduct, descriptionProduct, quantityProduct, user;
     private String productsID = "", state= "Normal";
     private ElegantNumberButton numberButton;
     private ImageView productImage;
@@ -40,7 +40,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_details);
 
-          productsID = getIntent().getStringExtra("id");
+        productsID = getIntent().getStringExtra("id");
+
         if (productsID == null) {
             throw new IllegalStateException("No PID");
         }
@@ -51,8 +52,19 @@ public class ProductDetailsActivity extends AppCompatActivity {
         quantityProduct = (TextView) findViewById(R.id.product_quantity);
         nameProduct = (TextView) findViewById(R.id.product_name_details);
         descriptionProduct = (TextView) findViewById(R.id.product_description_details);
+        user = (TextView) findViewById(R.id.userText);
 
        getProductDetails(productsID);
+
+       numberButton.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               if (Integer.valueOf(numberButton.getNumber()) >= Integer.valueOf(String.valueOf(quantityProduct))) {
+                   numberButton.setNumber(String.valueOf(quantityProduct));
+                   Toast.makeText(ProductDetailsActivity.this, "Error", Toast.LENGTH_SHORT).show();
+               }
+           }
+       });
 
        addtocart.setOnClickListener(new View.OnClickListener() {
            @Override
@@ -119,13 +131,15 @@ public class ProductDetailsActivity extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
-                if (dataSnapshot.exists())
-                {
+                if (dataSnapshot.exists()) {
+                    if (dataSnapshot.child("user").exists()){
+                        String userValue = (String) dataSnapshot.child("user").getValue();
+                        user.setText("Sold By: " + userValue);
+                    }
                     Products products= dataSnapshot.getValue(Products.class);
                     nameProduct.setText(products.getName());
                     priceProduct.setText("£" + products.getPrice());
-                    //quantityProduct.setText(products.getQuantity());
+                    quantityProduct.setText("" + products.getQuantity());
                     descriptionProduct.setText(products.getDescription());
                     Picasso.get().load(products.getImage()).into(productImage);
                 }

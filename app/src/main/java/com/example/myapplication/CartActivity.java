@@ -30,7 +30,7 @@ public  class CartActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
-    private Button NextProcess;
+    private Button nextProcess;
     private TextView totalamount_txt;
     private Context mcontext;
 
@@ -51,11 +51,11 @@ public  class CartActivity extends AppCompatActivity {
         layoutManager= new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        NextProcess = findViewById(R.id.cart_but_2);
+        nextProcess = findViewById(R.id.cart_but_2);
         totalamount_txt = findViewById(R.id.cart_total);
 
 
-        NextProcess.setOnClickListener(new View.OnClickListener() {
+        nextProcess.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), ConfirmActivity.class);

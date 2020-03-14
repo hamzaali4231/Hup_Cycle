@@ -67,7 +67,6 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
 
         productDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Products");
 
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         drawerLayout= findViewById(R.id.drawer_layout);
         dropDownSort = (Spinner) findViewById(R.id.sortBySpinner);
@@ -231,6 +230,7 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
                             public void onClick(View v) {
 
                                 Intent intent = new Intent(Buy.this, ProductDetailsActivity.class);
+                                intent.putExtra("loginUsername", getIntent().getStringExtra("loginUsername"));
                                 intent.putExtra("id",model.getId());
                                 startActivity(intent);
                             }

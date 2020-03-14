@@ -79,8 +79,6 @@ public class Sell extends AppCompatActivity {
         loadingbar = new ProgressDialog(this);
         dropdownMenu = (Spinner) findViewById(R.id.categorySpinner);
 
-        System.out.println("***********************" + getIntent().getStringExtra("loginUsername"));
-
         ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(Sell.this,
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.category_names));
 
@@ -205,7 +203,7 @@ public class Sell extends AppCompatActivity {
 
         HashMap<String,Object> productmap= new HashMap<>();
         productmap.put("id",productrandomkey);
-        productmap.put("user", getIntent().getStringArrayExtra("loginUsername"));
+        productmap.put("user", getIntent().getStringExtra("loginUsername"));
         productmap.put("date",saveCurrentDate);
         productmap.put("time",saveCurrentTime);
         productmap.put("description",description);
