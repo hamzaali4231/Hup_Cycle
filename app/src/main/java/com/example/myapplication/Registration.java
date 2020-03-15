@@ -18,8 +18,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Registration extends AppCompatActivity {
-    //int userID = ThreadLocalRandom.current().nextInt();
-
     EditText userName, fPassword,confirmPassword;
     Button btnRegister;
     DatabaseReference databaseReference;
@@ -39,11 +37,13 @@ public class Registration extends AppCompatActivity {
             }
         });
     }
+
     private void  registerUser(){
         final String username = userName.getText().toString().trim();
         final String password =fPassword.getText().toString().trim();
         String comfirmpassword =confirmPassword.getText().toString().trim();
 
+        // Validation
         if(TextUtils.isEmpty(username)){
             userName.setError("Please enter the username");
         }else if(TextUtils.isEmpty(password)){
@@ -57,11 +57,8 @@ public class Registration extends AppCompatActivity {
                     if(dataSnapshot.child(username).exists()){
                         Toast.makeText(Registration.this,"User already exists",Toast.LENGTH_LONG).show();
                     } else {
-//                        HashMap<String,Object> userMap= new HashMap<>();
-//                        userMap.put("password",password);
-//                        userMap.put("username",username);
-                        //databaseReference.child(String.valueOf(userID + username.charAt(0) + username.charAt(username.length()-1))).updateChildren(userMap);
 
+                        // Gets the database name reference and adds the data to fields
                         databaseReference.child(username).child("username").setValue(username);
                         databaseReference.child(username).child("password").setValue(password);
                         Toast.makeText(Registration.this,"User added",Toast.LENGTH_LONG).show();
@@ -76,10 +73,9 @@ public class Registration extends AppCompatActivity {
 
                 }
             });
-
         }
-
     }
+
     private void Cleartxt(){
         userName.setText("");
         fPassword.setText("");

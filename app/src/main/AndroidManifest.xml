@@ -23,6 +23,9 @@
              sign the APK for publishing.
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
+
+        <activity android:name=".WelcomeScreen" />
+
         <activity
             android:name=".LocationPage2"
             android:label="@string/title_activity_location_page2" />
@@ -33,7 +36,6 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

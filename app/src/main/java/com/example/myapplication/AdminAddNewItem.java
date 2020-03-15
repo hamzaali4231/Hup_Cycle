@@ -3,6 +3,7 @@ package com.example.myapplication;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.Continuation;
@@ -41,8 +43,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class AdminAddNewItem extends AppCompatActivity {
-    public List<String> sortCategory = new ArrayList<>();
-
     private String categoryName, description, pname, saveCurrentDate, saveCurrentTime, price, quantity;
 
     private Button addNewProductButton;
@@ -84,28 +84,38 @@ public class AdminAddNewItem extends AppCompatActivity {
         loadingbar = new ProgressDialog(this);
         dropdownMenu = (Spinner) findViewById(R.id.categorySpinner);
 
-        sortCategory.add("All Category");
-        sortCategory.add("Art");
-        sortCategory.add("Electronics");
-        sortCategory.add("Fashion");
-        sortCategory.add("Home");
-        sortCategory.add("Home & Beauty");
-        sortCategory.add("Home Garden");
-        sortCategory.add("Motor");
-        sortCategory.add("Sports");
-        final int listCategorySize = sortCategory.size()-1;
-
         ArrayAdapter<String> categoryAdapter = new ArrayAdapter<String>(getApplicationContext(),
-                android.R.layout.simple_list_item_1, sortCategory){
+                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.category_names)){
 
-            public View getDropDownView(int position, View convertView, ViewGroup parent) {
-                return super.getDropDownView(position + 1, convertView, parent);
+            @Override
+            public boolean isEnabled(int position){
+                if(position == 0)
+                {
+                    // Disable the first item from Spinner
+                    // First item will be use for hint
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
 
             @Override
-            public int getCount() {
-                return(listCategorySize); // Truncate the list
+            public View getDropDownView(int position, View convertView,
+                                        ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                if(position == 0){
+                    // Set the hint text color gray
+                    tv.setTextColor(Color.GRAY);
+                }
+                else {
+                    tv.setTextColor(Color.BLACK);
+                }
+                return view;
             }
+
         };
 
         categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

@@ -27,8 +27,6 @@ import java.util.Calendar;
 import java.util.HashMap;
 
 public class ProductDetailsActivity extends AppCompatActivity {
-
-
     private Button addtocart;
     private TextView priceProduct, nameProduct, descriptionProduct, quantityProduct, user;
     private String productsID = "", state= "Normal";
