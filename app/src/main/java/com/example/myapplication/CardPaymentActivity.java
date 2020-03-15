@@ -69,7 +69,7 @@ public class CardPaymentActivity extends AppCompatActivity {
                                                 });
 
 
-                                    }}
+            }}
     }
 }
 
