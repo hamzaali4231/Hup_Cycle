@@ -6,5 +6,10 @@
     <color name="backgroundColour">#2F8B58</color>
     <color name="slimegreen">#62d63e</color>
     <color name="textColour">#3B3B3B</color>
+    <color name="darkblue">#2193b0</color>
+    <color name="lightblue">#6dd5ed</color>
+    <color name="darkblueT">#992193B0</color>
+    <color name="lightblueT">#996DD5ED</color>
+
 
 </resources>
