@@ -112,7 +112,7 @@ public  class CartActivity extends AppCompatActivity {
                                             startActivity(intent);
                                         }
                                         if(i==1){
-                                            cartlistref.child(cartmodel.getId()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            cartlistref.child("User View").child("Products").child(cartmodel.getId()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
 
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {

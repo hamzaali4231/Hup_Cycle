@@ -1,33 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="wrap_content" android:layout_width="wrap_content"
-    >
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:outlineProvider="paddedBounds">
 
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
+        android:layout_margin="5dp"
+        android:backgroundTint="@color/textColour"
+        android:elevation="10dp"
         android:orientation="vertical"
+        android:outlineProvider="paddedBounds"
         app:cardBackgroundColor="@android:color/transparent"
         app:cardCornerRadius="4dp"
-        app:cardElevation="5dp"
-        app:cardUseCompatPadding="true"
-        android:backgroundTint="@color/textColour"
-        >
+        app:cardElevation="0dp"
+        app:cardUseCompatPadding="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="35dp"
-            android:orientation="vertical">
+            android:backgroundTint="@color/textColour"
+            android:orientation="vertical"
+            android:outlineProvider="paddedBounds">
 
             <TextView
                 android:id="@+id/product_name"
@@ -87,225 +88,4 @@
 
     </androidx.cardview.widget.CardView>
 
-
-</RelativeLayout>
-    <!--</RelativeLayout>-->
-
-    <!--</GridLayout>-->
-<!--//</LinearLayout>-->
-        <!--<androidx.cardview.widget.CardView-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="0dp"-->
-        <!--android:layout_columnWeight="1"-->
-        <!--android:layout_rowWeight="1"-->
-        <!--android:layout_marginBottom="16dp"-->
-        <!--android:layout_marginLeft="8dp"-->
-        <!--android:layout_marginRight="16dp"-->
-        <!--app:cardElevation="0dp"-->
-        <!--app:cardCornerRadius="8dp"-->
-        <!--app:cardBackgroundColor="@android:color/transparent"-->
-
-        <!--&gt;-->
-
-        <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:orientation="vertical">-->
-
-        <!--<TextView-->
-        <!--android:id="@+id/product_name2"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text=""-->
-        <!--android:textAlignment="center"-->
-        <!--android:textSize="50dp"-->
-        <!--android:textStyle="bold"-->
-        <!--android:textColor="@color/colorPrimaryDark"-->
-        <!--android:elevation="2dp"-->
-        <!--/>-->
-
-        <!--<ImageView-->
-
-        <!--android:id="@+id/product_image2"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="200dp"-->
-        <!--android:layout_below="@id/product_name"-->
-        <!--android:scaleType="centerCrop"-->
-        <!--android:layout_marginTop="3dp"-->
-        <!--android:elevation="2dp"-->
-
-        <!--/>-->
-        <!--<TextView-->
-        <!--android:id="@+id/product_price2"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_below="@id/product_image"-->
-        <!--android:text=""-->
-        <!--android:textAlignment="center"-->
-        <!--android:textSize="20dp"-->
-        <!--android:textStyle="bold"-->
-        <!--android:textColor="@color/colorPrimaryDark"-->
-        <!--android:elevation="2dp"-->
-        <!--/>-->
-        <!--<TextView-->
-        <!--android:id="@+id/product_description2"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_below="@id/product_price"-->
-        <!--android:text=""-->
-        <!--android:layout_marginTop="2dp"-->
-        <!--android:textAlignment="center"-->
-        <!--android:textSize="17dp"-->
-        <!--android:textStyle="bold"-->
-        <!--android:textColor="@color/colorPrimaryDark"-->
-        <!--android:elevation="2dp"-->
-        <!--/>-->
-        <!--</LinearLayout>-->
-
-        <!--<androidx.cardview.widget.CardView-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="0dp"-->
-        <!--android:layout_columnWeight="1"-->
-        <!--android:layout_rowWeight="1"-->
-        <!--android:layout_marginBottom="16dp"-->
-        <!--android:layout_marginLeft="16dp"-->
-        <!--android:layout_marginRight="16dp"-->
-        <!--app:cardElevation="0dp"-->
-        <!--app:cardCornerRadius="8dp"-->
-        <!--app:cardBackgroundColor="@android:color/transparent"-->
-
-        <!--&gt;-->
-
-        <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:orientation="vertical">-->
-
-        <!--<TextView-->
-        <!--android:id="@+id/product_name3"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text=""-->
-        <!--android:textAlignment="center"-->
-        <!--android:textSize="50dp"-->
-        <!--android:textStyle="bold"-->
-        <!--android:textColor="@color/colorPrimaryDark"-->
-        <!--android:elevation="2dp"-->
-        <!--/>-->
-
-        <!--<ImageView-->
-
-        <!--android:id="@+id/product_image3"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="200dp"-->
-        <!--android:layout_below="@id/product_name"-->
-        <!--android:scaleType="centerCrop"-->
-        <!--android:layout_marginTop="3dp"-->
-        <!--android:elevation="2dp"-->
-
-        <!--/>-->
-        <!--<TextView-->
-        <!--android:id="@+id/product_price3"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_below="@id/product_image"-->
-        <!--android:text=""-->
-        <!--android:textAlignment="center"-->
-        <!--android:textSize="20dp"-->
-        <!--android:textStyle="bold"-->
-        <!--android:textColor="@color/colorPrimaryDark"-->
-        <!--android:elevation="2dp"-->
-        <!--/>-->
-        <!--<TextView-->
-        <!--android:id="@+id/product_description3"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_below="@id/product_price"-->
-        <!--android:text=""-->
-        <!--android:layout_marginTop="2dp"-->
-        <!--android:textAlignment="center"-->
-        <!--android:textSize="17dp"-->
-        <!--android:textStyle="bold"-->
-        <!--android:textColor="@color/colorPrimaryDark"-->
-        <!--android:elevation="2dp"-->
-        <!--/>-->
-        <!--</LinearLayout>-->
-        <!--</androidx.cardview.widget.CardView>-->
-
-        <!--<androidx.cardview.widget.CardView-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="0dp"-->
-        <!--android:layout_columnWeight="1"-->
-        <!--android:layout_rowWeight="1"-->
-        <!--android:layout_marginBottom="16dp"-->
-        <!--android:layout_marginLeft="8dp"-->
-        <!--android:layout_marginRight="16dp"-->
-        <!--app:cardElevation="0dp"-->
-        <!--app:cardCornerRadius="8dp"-->
-        <!--app:cardBackgroundColor="@android:color/transparent"-->
-
-        <!--&gt;-->
-
-        <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:orientation="vertical">-->
-
-        <!--<TextView-->
-        <!--android:id="@+id/product_name4"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text=""-->
-        <!--android:textAlignment="center"-->
-        <!--android:textSize="50dp"-->
-        <!--android:textStyle="bold"-->
-        <!--android:textColor="@color/colorPrimaryDark"-->
-        <!--android:elevation="2dp"-->
-        <!--/>-->
-
-        <!--<ImageView-->
-
-        <!--android:id="@+id/product_image4"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="200dp"-->
-        <!--android:layout_below="@id/product_name"-->
-        <!--android:scaleType="centerCrop"-->
-        <!--android:layout_marginTop="3dp"-->
-        <!--android:elevation="2dp"-->
-
-        <!--/>-->
-        <!--<TextView-->
-        <!--android:id="@+id/product_price4"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_below="@id/product_image"-->
-        <!--android:text=""-->
-        <!--android:textAlignment="center"-->
-        <!--android:textSize="20dp"-->
-        <!--android:textStyle="bold"-->
-        <!--android:textColor="@color/colorPrimaryDark"-->
-        <!--android:elevation="2dp"-->
-        <!--/>-->
-        <!--<TextView-->
-        <!--android:id="@+id/product_description4"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_below="@id/product_price"-->
-        <!--android:text=""-->
-        <!--android:layout_marginTop="2dp"-->
-        <!--android:textAlignment="center"-->
-        <!--android:textSize="17dp"-->
-        <!--android:textStyle="bold"-->
-        <!--android:textColor="@color/colorPrimaryDark"-->
-        <!--android:elevation="2dp"-->
-        <!--/>-->
-        <!--</LinearLayout>-->
-        <!--</androidx.cardview.widget.CardView>-->
-
-    <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--xmlns:card_view="http://schemas.android.com/tools"-->
-    <!--android:orientation="vertical"-->
-    <!--android:weightSum="0">-->
+</LinearLayout>

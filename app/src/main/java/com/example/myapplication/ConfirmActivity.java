@@ -68,7 +68,7 @@ public class ConfirmActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 Intent in = new Intent(ConfirmActivity.this, Buy.class);
-                                Toast.makeText(ConfirmActivity.this, "Item deleted", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ConfirmActivity.this, "Items reserved", Toast.LENGTH_SHORT).show();
                                 startActivity(in);
                                 finish();
                             }

@@ -26,6 +26,7 @@
 
         <activity android:name=".WelcomeScreen" />
 
+
         <activity
             android:name=".LocationPage2"
             android:label="@string/title_activity_location_page2" />

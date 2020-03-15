@@ -72,7 +72,7 @@ public class Sell extends AppCompatActivity {
 
         setContentView(R.layout.activity_admin_add_product_activity);
 
-       // productImagesreference = FirebaseStorage.getInstance().getReference().child("Products");
+       productImagesreference = FirebaseStorage.getInstance().getReference().child("Products");
         productsref= FirebaseDatabase.getInstance().getReference().child("Products");
 
         addNewProductButton = (Button) findViewById(R.id.admin_button);

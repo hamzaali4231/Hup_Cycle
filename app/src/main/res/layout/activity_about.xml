@@ -142,7 +142,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="19dp"
-        android:text="Opening time"
+        android:text="Time until sale:"
         android:textSize="18sp"
         android:textStyle="bold" />
 
