@@ -2,20 +2,14 @@ package com.example.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.myapplication.ViewHold.CartViewHolder;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import androidx.annotation.NonNull;
@@ -23,7 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class ConfirmActivity extends AppCompatActivity {
+public class CardPaymentActivity extends AppCompatActivity {
 
     private Button confirmbutton;
 
@@ -36,7 +30,7 @@ public class ConfirmActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.confirm_order);
+        setContentView(R.layout.card_payment);
 
         confirmbutton = findViewById(R.id.confirm_button);
         layoutManager = new LinearLayoutManager(this);
@@ -67,8 +61,8 @@ public class ConfirmActivity extends AppCompatActivity {
                         (new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
-                                Intent in = new Intent(ConfirmActivity.this, Buy.class);
-                                Toast.makeText(ConfirmActivity.this, "Items reserved", Toast.LENGTH_SHORT).show();
+                                Intent in = new Intent(CardPaymentActivity.this, Buy.class);
+                                Toast.makeText(CardPaymentActivity.this, "Items reserved", Toast.LENGTH_SHORT).show();
                                 startActivity(in);
                                 finish();
                             }

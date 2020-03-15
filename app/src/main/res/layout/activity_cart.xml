@@ -6,12 +6,34 @@
     android:layout_height="match_parent"
     tools:context=".CartActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/bgHeader"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="@drawable/rectangle_header"
+        android:theme="@style/ToolbarTheme"
+        android:elevation="5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:elevation="10dp"
+        android:transitionName="tvLogin"
+        android:text="CART"
+        android:fontFamily="@font/provicali"
+        android:textColor="@android:color/white"
+        android:textSize="50dp"
+        android:textStyle="bold" />
+
     <RelativeLayout
         android:id="@+id/r_layout_cart_page"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/colorPrimaryDark"
-        android:layout_alignParentTop="true">
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="40dp">
 
         <TextView
             android:id="@+id/cart_total"
@@ -45,9 +67,11 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
-        android:background="@color/colorPrimaryDark"
         android:text="Reserve Items"
-        android:textColor="@android:color/white"
-        android:textSize="25dp" />
+        android:textSize="25dp"
+        android:background="@drawable/bg_ui"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"/>
+
 
 </RelativeLayout>

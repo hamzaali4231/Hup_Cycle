@@ -34,7 +34,7 @@
 
         <activity
             android:name=".SplashScreen"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -45,31 +45,34 @@
             android:theme="@style/AppTheme.FullScreen" />
         <activity
             android:name=".Buy"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.FullScreen" />
         <activity
             android:name=".Sell"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.FullScreen" />
         <activity
             android:name=".AdminAddNewItem"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.FullScreen" />
         <activity
             android:name=".AdminCategory"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.FullScreen" />
         <activity
             android:name=".Registration"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.FullScreen" />
         <activity
             android:name=".CartActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.FullScreen" />
         <activity
             android:name=".Login"
             android:theme="@style/AppTheme.FullScreen" />
         <activity
-            android:name=".ConfirmActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".CardPaymentActivity"
+            android:theme="@style/AppTheme.FullScreen" />
         <activity
             android:name=".aboutFragment"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.FullScreen" />
+        <activity
+            android:name=".PaymentMethodMenu"
+            android:theme="@style/AppTheme.FullScreen" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />

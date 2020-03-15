@@ -34,7 +34,7 @@
         android:layout_height="134dp"
         android:layout_below="@+id/bgHeader"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="-90dp"
         android:layout_marginRight="-100dp"
         android:src="@drawable/circletransparent" />
 
@@ -106,7 +106,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:inputType="text" />
+                        android:inputType="text"
+                        android:text="test" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -123,7 +124,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:inputType="textPassword" />
+                        android:inputType="textPassword"
+                        android:text="1234" />
 
                     <CheckBox
                         android:id="@+id/showPassword"
@@ -133,7 +135,7 @@
                         android:layout_gravity="center"
                         android:layout_marginTop="20dp"
                         android:elevation="5dp"
-                        android:checked="true"
+                        android:checked="false"
                         android:text="Show Password"
                         tools:ignore="MissingConstraints" />
                 </LinearLayout>

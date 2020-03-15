@@ -135,12 +135,13 @@ public class ProductDetailsActivity extends AppCompatActivity {
                 if (dataSnapshot.exists()) {
                     if (dataSnapshot.child("user").exists()){
                         String userValue = (String) dataSnapshot.child("user").getValue();
+                        user.setVisibility(View.VISIBLE);
                         user.setText("Sold By: " + userValue);
                     }
                     Products products= dataSnapshot.getValue(Products.class);
                     nameProduct.setText(products.getName());
                     priceProduct.setText("£" + products.getPrice());
-                    quantityProduct.setText("" + products.getQuantity());
+                    quantityProduct.setText("Quantity: " + products.getQuantity());
                     descriptionProduct.setText(products.getDescription());
                     Picasso.get().load(products.getImage()).into(productImage);
                 }

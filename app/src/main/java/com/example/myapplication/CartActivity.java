@@ -23,6 +23,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
 
 
 public  class CartActivity extends AppCompatActivity {
@@ -58,7 +59,7 @@ public  class CartActivity extends AppCompatActivity {
         nextProcess.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ConfirmActivity.class);
+                Intent intent = new Intent(getApplicationContext(), PaymentMethodMenu.class);
                 startActivity(intent);
                 finish();
             }
@@ -80,10 +81,10 @@ public  class CartActivity extends AppCompatActivity {
                     @Override
                     protected void onBindViewHolder(@NonNull CartViewHolder cartViewHolder, int i,
                                                     @NonNull final Cart cartmodel) {
-                        cartViewHolder.txtProductQuantity.setText(cartmodel.getQuantity());
+                        cartViewHolder.txtProductQuantity.setText("Quantity: " + cartmodel.getQuantity());
                         cartViewHolder.txtProductPrice.setText(cartmodel.getPrice());
                         cartViewHolder.txtProductName.setText(cartmodel.getName());
-//                      Picasso.get().load(cartmodel.getImageView()).into(cartViewHolder.imageHolder);
+                          Picasso.get().load(cartmodel.getImageView()).into(cartViewHolder.imageHolder);
 
                         String productPrice= cartmodel.getPrice();
                         productPrice= productPrice.replaceAll("[^\\d.]", "");

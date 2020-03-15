@@ -21,10 +21,10 @@
         android:layout_marginTop="40dp"
         android:elevation="10dp"
         android:transitionName="tvLogin"
-        android:text="MAIN MENU"
+        android:text="PAYMENT METHOD"
         android:fontFamily="@font/provicali"
         android:textColor="@android:color/white"
-        android:textSize="50dp"
+        android:textSize="35dp"
         android:textStyle="bold" />
 
     <ImageView
@@ -93,25 +93,25 @@
                     app:cardElevation="4dp">
 
                     <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                    android:orientation="vertical">
+                        android:orientation="vertical">
 
                         <ImageView
-                            android:src="@drawable/buy_icon"
+                            android:src="@drawable/card_icon"
                             android:layout_width="200dp"
                             android:layout_height="200dp"
                             android:layout_gravity="center" />
 
                         <Button
-                            android:id="@+id/buyScreen"
+                            android:id="@+id/cardScreen"
                             android:layout_width="200dp"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center"
                             android:layout_marginTop="20dp"
                             android:background="@drawable/bg_ui"
-                            android:layout_gravity="center"
-                            android:text="Buy"
+                            android:text="Card"
                             android:textAllCaps="false"
                             android:textColor="@android:color/white" />
 
@@ -134,19 +134,19 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:src="@drawable/sell_icon"
+                            android:src="@drawable/cash_icon"
                             android:layout_width="200dp"
                             android:layout_height="200dp"
                             android:layout_gravity="center" />
 
                         <Button
-                            android:id="@+id/sellScreen"
+                            android:id="@+id/cashScreen"
                             android:layout_width="200dp"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center"
                             android:layout_marginTop="20dp"
                             android:background="@drawable/bg_ui"
-                            android:layout_gravity="center"
-                            android:text="Sell"
+                            android:text="Cash"
                             android:textAllCaps="false"
                             android:textColor="@android:color/white" />
 
