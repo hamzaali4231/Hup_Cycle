@@ -39,7 +39,6 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
 
 
 public class Buy extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
@@ -52,6 +51,8 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
     private RecyclerView recyclerView;
     public Query itemQuery;
     private Spinner dropDownSort, dropDownCategory;
+    private DatabaseReference productsref;
+
 
     int check =0;
     int check2 =0;
@@ -69,6 +70,7 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
         setContentView(R.layout.activity_buy);
 
         productDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Products");
+        productsref= FirebaseDatabase.getInstance().getReference().child("Products");
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         drawerLayout= findViewById(R.id.drawer_layout);
@@ -110,9 +112,9 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
         ArrayAdapter<String> sortAdapter = new ArrayAdapter<String>(getApplicationContext(),
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.sort_by));
 
-
         categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropDownCategory.setAdapter(categoryAdapter);
+
         sortAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropDownSort.setAdapter(sortAdapter);
 
@@ -132,6 +134,7 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
+        recyclerView.setAdapter(adapter);
     }
 
     private void itemSortFilter() {
@@ -145,16 +148,20 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
                 }
             });
 
+
         } else if (selectedSort.equals("Highest Price")) {
             Collections.sort(list, new Comparator<Products>() {
                 @Override
                 public int compare(Products item1, Products item2) {
                     return Integer.compare(Integer.parseInt(item2.getPrice()), Integer.parseInt(item1.getPrice()));
                 }
+
             });
+           // recyclerView.setAdapter(adapter);
 
         } else if (selectedSort.equals("Recommended") && selectedCategory.equals("All Category")){
             defaultGetItems();
+         //   recyclerView.setAdapter(adapter);
         }
 
         if (!selectedSort.equals("Recommended")){
@@ -168,32 +175,20 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
     private void itemCategoryFilter() {
         selectedCategory = dropDownCategory.getSelectedItem().toString();
 
-        if (selectedCategory.equals("All Category")){
-            defaultGetItems();
-        } else if (selectedCategory.equals("Art")) {
-            itemQuery = productDatabaseReference.orderByChild("category").equalTo(selectedCategory);
-            getCategoryItem();
-        } else if (selectedCategory.equals("Electronics")) {
-            itemQuery = productDatabaseReference.orderByChild("category").equalTo(selectedCategory);
-            getCategoryItem();
-        } else if (selectedCategory.equals("Fashion")) {
+        if (selectedCategory.equals("Electronics")) {
             itemQuery = productDatabaseReference.orderByChild("category").equalTo(selectedCategory);
             getCategoryItem();
         } else if (selectedCategory.equals("Home")) {
             itemQuery = productDatabaseReference.orderByChild("category").equalTo(selectedCategory);
             getCategoryItem();
+        } else if (selectedCategory.equals("Fashion")) {
+            itemQuery = productDatabaseReference.orderByChild("category").equalTo(selectedCategory);
+            getCategoryItem();
         } else if (selectedCategory.equals("Health & Beauty")) {
             itemQuery = productDatabaseReference.orderByChild("category").equalTo(selectedCategory);
             getCategoryItem();
-        } else if (selectedCategory.equals("Home Garden")) {
-            itemQuery = productDatabaseReference.orderByChild("category").equalTo(selectedCategory);
-            getCategoryItem();
-        } else if (selectedCategory.equals("Motor")) {
-            itemQuery = productDatabaseReference.orderByChild("category").equalTo(selectedCategory);
-            getCategoryItem();
-        } else if (selectedCategory.equals("Sports")) {
-            itemQuery = productDatabaseReference.orderByChild("category").equalTo(selectedCategory);
-            getCategoryItem();
+        } else if (selectedCategory.equals("All Category")){
+            defaultGetItems();
         }
 
         dropDownSort.setSelection(0);
@@ -224,7 +219,7 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
             }
         });
     }
-    
+
     private void defaultGetItems() {
         FirebaseRecyclerOptions <Products> options =
                 new FirebaseRecyclerOptions.Builder<Products>().setQuery(productDatabaseReference,Products.class)
@@ -302,7 +297,6 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
 
             if (id==R.id.nav_cart){
                 Intent intent = new Intent(Buy.this,CartActivity.class);
-                intent.putExtra("loginUsername", getIntent().getStringExtra("loginUsername"));
                 System.out.println("Login opening");
                 startActivity(intent);
 

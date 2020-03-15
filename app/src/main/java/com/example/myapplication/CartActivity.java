@@ -70,10 +70,10 @@ public  class CartActivity extends AppCompatActivity {
         super.onStart();
 
         final DatabaseReference cartlistref = FirebaseDatabase.getInstance().getReference()
-                .child("Cart List").child("User View").child("Products");
+                .child("Cart List");
 
         final FirebaseRecyclerOptions<Cart> options = new FirebaseRecyclerOptions.Builder<Cart>().setQuery
-                (cartlistref.orderByChild("user").equalTo(getIntent().getStringExtra("loginUsername")),Cart.class).build();
+                (cartlistref.child("User View").child("Products"),Cart.class).build();
 
         FirebaseRecyclerAdapter<Cart, CartViewHolder> adapter = new
                 FirebaseRecyclerAdapter<Cart, CartViewHolder>(options) {

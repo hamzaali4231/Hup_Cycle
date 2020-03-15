@@ -36,7 +36,7 @@ public class SplashScreen extends AppCompatActivity implements Runnable{
 
     @Override
     public void run() {
-        Intent splashIntent = new Intent(SplashScreen.this, WelcomeScreen.class);
+        Intent splashIntent = new Intent(SplashScreen.this, Login.class);
         startActivity(splashIntent);
         finish();
     }

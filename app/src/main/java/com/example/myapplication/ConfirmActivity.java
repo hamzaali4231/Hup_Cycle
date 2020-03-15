@@ -72,8 +72,10 @@ public class ConfirmActivity extends AppCompatActivity {
                                 startActivity(in);
                                 finish();
                             }
-                        });
-            }}
+                                                });
+
+
+                                    }}
     }
 }
 
