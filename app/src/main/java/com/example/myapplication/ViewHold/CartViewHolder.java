@@ -8,7 +8,6 @@ import com.example.myapplication.R;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class CartViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
     public TextView txtProductName, txtProductPrice, txtProductQuantity;
     public ImageView imageHolder;
     private ItemClickListener itemClickListener;
