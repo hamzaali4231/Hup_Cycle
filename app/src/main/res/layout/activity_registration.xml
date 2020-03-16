@@ -86,7 +86,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:inputType="text" />
+                        android:inputType="text"
+                        android:maxLength="12" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -103,7 +104,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:inputType="textPassword" />
+                        android:inputType="textPassword"
+                        android:maxLength="12" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -120,7 +122,20 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:inputType="textPassword" />
+                        android:inputType="textPassword"
+                        android:maxLength="12" />
+
+                    <CheckBox
+                        android:id="@+id/showPassword"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="20dp"
+                        android:elevation="5dp"
+                        android:checked="false"
+                        android:text="Show Password"
+                        tools:ignore="MissingConstraints" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 

@@ -95,7 +95,7 @@ public class Login extends AppCompatActivity {
                     // User login
                     if (!username.isEmpty()){
                         if (user.getPassword().equals(password)){
-                            if(!user.getUsername().equals("test")){
+                            if(!user.getUsername().equals("admin")){
                                 Toast.makeText(Login.this,"Login Successful",Toast.LENGTH_LONG).show();
                                 Intent intent =new Intent(getApplicationContext(), MainMenu.class);
                                 intent.putExtra("loginUsername", user.getUsername());

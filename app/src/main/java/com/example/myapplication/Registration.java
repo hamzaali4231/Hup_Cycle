@@ -3,8 +3,12 @@ package com.example.myapplication;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -21,6 +25,9 @@ public class Registration extends AppCompatActivity {
     EditText userName, fPassword,confirmPassword;
     Button btnRegister;
     DatabaseReference databaseReference;
+    private CheckBox checkBox;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +37,22 @@ public class Registration extends AppCompatActivity {
         confirmPassword=(EditText) findViewById(R.id.confirmPasswordField);
         btnRegister=(Button) findViewById(R.id.registerButton);
         databaseReference= FirebaseDatabase.getInstance().getReference("User_Login");
+        checkBox = (CheckBox) findViewById(R.id.showPassword);
+
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    fPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    confirmPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }
+                else{
+                    fPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    confirmPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                }
+            }
+        });
+
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,16 +64,16 @@ public class Registration extends AppCompatActivity {
     private void  registerUser(){
         final String username = userName.getText().toString().trim();
         final String password =fPassword.getText().toString().trim();
-        String comfirmpassword =confirmPassword.getText().toString().trim();
+        final String confirmpassword =confirmPassword.getText().toString().trim();
 
         // Validation
         if(TextUtils.isEmpty(username)){
             userName.setError("Please enter the username");
-        }else if(TextUtils.isEmpty(password)){
+        } else if(TextUtils.isEmpty(password)){
             fPassword.setError("Please enter the password");
-        }else if(!password.equals(comfirmpassword)){
+        } else if(!password.equals(confirmpassword)){
             confirmPassword.setError("Passwords do not match");
-        }else{
+        } else{
             databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

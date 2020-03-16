@@ -46,7 +46,8 @@
                 android:layout_marginEnd="28dp"
                 android:layout_marginTop="100dp"
                 android:layout_marginBottom="0dp"
-                android:scaleType="centerCrop" />
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter" />
 
             <TextView
                 android:id="@+id/product_price_details"
@@ -63,11 +64,36 @@
                 android:textColor="@android:color/black"
                 android:textSize="20dp" />
 
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="103dp"
+                android:layout_below="@+id/product_price_details"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="28dp"
+                android:layout_marginEnd="28dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="24dp">
+
+                <TextView
+                    android:id="@+id/product_description_details"
+                    android:layout_width="wrap_content"
+                    android:layout_height="103dp"
+                    android:layout_below="@+id/product_price_details"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginEnd="28dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="24dp" />
+
+            </androidx.cardview.widget.CardView>
+
             <TextView
                 android:id="@+id/userText"
                 android:layout_width="114dp"
                 android:layout_height="37dp"
-                android:layout_below="@+id/product_description_details"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="28dp"
                 android:layout_marginTop="-6dp"
@@ -92,45 +118,22 @@
                 android:textColor="@android:color/black"
                 android:textSize="20dp" />
 
-            <EditText
-                android:id="@+id/product_description_details"
-                android:layout_width="wrap_content"
-                android:layout_height="103dp"
-                android:layout_below="@+id/product_price_details"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="28dp"
-                android:layout_marginEnd="28dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="24dp"
-                android:clickable="false"
-                android:cursorVisible="false"
-                android:ems="10"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:hint="Description"
-                android:inputType="textPersonName"
-                android:textColor="@color/textColour"
-                android:textColorHint="@color/textColour"
-                app:layout_constraintBottom_toTopOf="@+id/loginButton"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:ignore="MissingConstraints" />
 
             <Button
                 android:id="@+id/but_add_cart"
                 android:layout_width="138dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/product_description_details"
+                android:layout_alignParentBottom="true"
                 android:layout_gravity="center"
-                android:layout_marginTop="45dp"
+                android:layout_marginStart="6dp"
                 android:layout_marginEnd="28dp"
+                android:layout_marginBottom="603dp"
                 android:layout_toEndOf="@+id/amount_cart_btn"
                 android:background="@drawable/bg_ui"
                 android:text="Add To Cart"
-                android:textSize="20dp"
                 android:textAllCaps="false"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:textSize="20dp" />
 
             <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
                 android:id="@+id/amount_cart_btn"

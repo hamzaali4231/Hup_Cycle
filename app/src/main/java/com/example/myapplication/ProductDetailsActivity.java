@@ -141,7 +141,11 @@ public class ProductDetailsActivity extends AppCompatActivity {
                     Products products= dataSnapshot.getValue(Products.class);
                     nameProduct.setText(products.getName());
                     priceProduct.setText("£" + products.getPrice());
-                    quantityProduct.setText("Quantity: " + products.getQuantity());
+                    if (Integer.parseInt(products.getQuantity()) > 10){
+                        quantityProduct.setText("Quantity: 10+");
+                    } else {
+                        quantityProduct.setText("Quantity: " + products.getQuantity());
+                    }
                     descriptionProduct.setText(products.getDescription());
                     Picasso.get().load(products.getImage()).into(productImage);
                 }
