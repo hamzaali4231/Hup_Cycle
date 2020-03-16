@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 public class User {
     private String username;
+    private String email;
     private String password;
 
     public String getUsername() {
@@ -28,4 +29,11 @@ public class User {
 
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

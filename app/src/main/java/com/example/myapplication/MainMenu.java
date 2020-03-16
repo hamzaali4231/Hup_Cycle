@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import java.util.Arrays;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainMenu extends AppCompatActivity {
@@ -26,6 +24,7 @@ public class MainMenu extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Buy.class);
                 intent.putExtra("loginUsername", getIntent().getStringExtra("loginUsername"));
+                intent.putExtra("userEmail", getIntent().getStringExtra("userEmail"));
                 startActivity(intent);
             }
         });

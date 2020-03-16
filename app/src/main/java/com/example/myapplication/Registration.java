@@ -22,7 +22,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Registration extends AppCompatActivity {
-    EditText userName, fPassword,confirmPassword;
+    EditText userName, userEmail, fPassword,confirmPassword;
     Button btnRegister;
     DatabaseReference databaseReference;
     private CheckBox checkBox;
@@ -33,6 +33,7 @@ public class Registration extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
         userName=(EditText) findViewById(R.id.usernameField);
+        userEmail = (EditText) findViewById(R.id.emailField);
         fPassword=(EditText) findViewById(R.id.passwordField);
         confirmPassword=(EditText) findViewById(R.id.confirmPasswordField);
         btnRegister=(Button) findViewById(R.id.registerButton);
@@ -63,12 +64,18 @@ public class Registration extends AppCompatActivity {
 
     private void  registerUser(){
         final String username = userName.getText().toString().trim();
+        final String email =userEmail.getText().toString().trim();
         final String password =fPassword.getText().toString().trim();
         final String confirmpassword =confirmPassword.getText().toString().trim();
+
 
         // Validation
         if(TextUtils.isEmpty(username)){
             userName.setError("Please enter the username");
+        } else if (!(android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches())) {
+            userEmail.setError("Invalid Email address");
+        } else if (TextUtils.isEmpty(email)){
+            userEmail.setError("Please enter the email");
         } else if(TextUtils.isEmpty(password)){
             fPassword.setError("Please enter the password");
         } else if(!password.equals(confirmpassword)){
@@ -83,6 +90,7 @@ public class Registration extends AppCompatActivity {
 
                         // Gets the database name reference and adds the data to fields
                         databaseReference.child(username).child("username").setValue(username);
+                        databaseReference.child(username).child("email").setValue(email);
                         databaseReference.child(username).child("password").setValue(password);
                         Toast.makeText(Registration.this,"User added",Toast.LENGTH_LONG).show();
                         Cleartxt();

@@ -68,7 +68,6 @@ public class Login extends AppCompatActivity {
         loginb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendMail();
                 logIn(userName.getText().toString(), password.getText().toString());
             }
         });
@@ -81,19 +80,6 @@ public class Login extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
-
-    private void sendMail() {
-
-        String mail = "emaz111@hotmail.com";
-        String message = "Test Test message";
-        String subject = "Test";
-
-        //Send Mail
-        JavaMailAPI javaMailAPI = new JavaMailAPI(this,mail,subject,message);
-
-        javaMailAPI.execute();
-
     }
 
     private void logIn(final String username,final String password) {
@@ -112,6 +98,7 @@ public class Login extends AppCompatActivity {
                                 Toast.makeText(Login.this,"Login Successful",Toast.LENGTH_LONG).show();
                                 Intent intent =new Intent(getApplicationContext(), MainMenu.class);
                                 intent.putExtra("loginUsername", user.getUsername());
+                                intent.putExtra("userEmail", user.getEmail());
                                 startActivity(intent);
                             } else {
                                 Toast.makeText(Login.this,"Login Successful",Toast.LENGTH_LONG).show();

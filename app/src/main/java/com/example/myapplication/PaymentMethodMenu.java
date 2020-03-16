@@ -10,8 +10,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.Arrays;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -30,8 +28,9 @@ public class PaymentMethodMenu extends AppCompatActivity {
         cardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent in = new Intent(PaymentMethodMenu.this, CardPaymentActivity.class);
-                startActivity(in);
+                Intent intent = new Intent(PaymentMethodMenu.this, CardPaymentActivity.class);
+                intent.putExtra("userEmail", getIntent().getStringExtra("userEmail"));
+                startActivity(intent);
 
             }
         });
@@ -39,9 +38,23 @@ public class PaymentMethodMenu extends AppCompatActivity {
         cashButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               cashPayment();
+                sendMail();
             }
         });
+    }
+
+    private void sendMail() {
+
+        String mail = getIntent().getStringExtra("userEmail");
+        String message = "Item has been reserved. You have 7 days to collect your item or reservation will be declined";
+        String subject = "Item Reservation";
+
+        //Send Mail
+        JavaMailAPI javaMailAPI = new JavaMailAPI(this,mail,subject,message);
+        javaMailAPI.execute();
+
+        cashPayment();
+
     }
 
     public void cashPayment() {
@@ -50,9 +63,7 @@ public class PaymentMethodMenu extends AppCompatActivity {
                 (new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        Intent in = new Intent(PaymentMethodMenu.this, Buy.class);
                         Toast.makeText(PaymentMethodMenu.this, "Items reserved", Toast.LENGTH_SHORT).show();
-                        startActivity(in);
                         finish();
                     }
                 });

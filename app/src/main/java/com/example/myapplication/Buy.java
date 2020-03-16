@@ -1,13 +1,5 @@
 package com.example.myapplication;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
+
 import com.example.myapplication.ViewHold.ProductViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -30,10 +23,20 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Objects;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 
 public class Buy extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
@@ -236,6 +239,7 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
 
                                     Intent intent = new Intent(Buy.this, ProductDetailsActivity.class);
                                     intent.putExtra("loginUsername", getIntent().getStringExtra("loginUsername"));
+                                    intent.putExtra("userEmail", getIntent().getStringExtra("userEmail"));
                                     intent.putExtra("id",model.getId());
                                     startActivity(intent);
                                 }
@@ -292,6 +296,8 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
 
             if (id==R.id.nav_cart){
                 Intent intent = new Intent(Buy.this,CartActivity.class);
+                intent.putExtra("userEmail", getIntent().getStringExtra("userEmail"));
+                System.out.println("************************" + getIntent().getStringExtra("userEmail"));
                 System.out.println("Login opening");
                 startActivity(intent);
 
@@ -316,37 +322,6 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
 
             }
 
-
-
-//        switch (menuItem.getItemId()){
-////
-////            case R.id.nav_login:
-////                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-////                        new Login()).commit();
-////                break;
-////            case R.id.nav_about:
-////                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-////                        new aboutFragment()).commit();
-////                break;
-//
-//            case R.id.nav_map:
-//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-//                        new MapsActivity()).commit();
-//                break;
-//            case R.id.nav_buy:
-//
-//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-//                        new buyFragment()).commit();
-//                break;
-//
-////            case R.id.nav_cart:
-////                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-////                        new CartActivity()).commit();
-////                break;
-//
-//            case R.id.nav_share:
-//                Toast.makeText(this,"IT is shared", Toast.LENGTH_SHORT).show();
-//        }
         DrawerLayout drawerLayout=  findViewById(R.id.drawer_layout);
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;

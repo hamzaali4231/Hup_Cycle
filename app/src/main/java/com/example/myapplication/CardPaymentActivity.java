@@ -1,15 +1,16 @@
 package com.example.myapplication;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.FirebaseDatabase;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -38,12 +39,25 @@ public class CardPaymentActivity extends AppCompatActivity {
         confirmbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                makePayment();
+                sendMail();
             }
         });
     }
 
 
+    private void sendMail() {
+
+        String mail = getIntent().getStringExtra("userEmail");
+        String message = "Item has been reserved. You have 7 days to collect your item or reservation will be declined";
+        String subject = "Item Reservation";
+
+        //Send Mail
+        JavaMailAPI javaMailAPI = new JavaMailAPI(this,mail,subject,message);
+        javaMailAPI.execute();
+
+        makePayment();
+
+    }
 
     public void makePayment(){
 
@@ -59,9 +73,7 @@ public class CardPaymentActivity extends AppCompatActivity {
                         (new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
-                                Intent in = new Intent(CardPaymentActivity.this, Buy.class);
                                 Toast.makeText(CardPaymentActivity.this, "Items reserved", Toast.LENGTH_SHORT).show();
-                                startActivity(in);
                                 finish();
                             }
                                                 });

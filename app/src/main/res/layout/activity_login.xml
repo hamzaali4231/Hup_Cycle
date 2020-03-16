@@ -106,8 +106,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:inputType="text"
-                        android:text="test" />
+                        android:inputType="text" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -124,8 +123,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:inputType="textPassword"
-                        android:text="1234" />
+                        android:inputType="textPassword" />
 
                     <CheckBox
                         android:id="@+id/showPassword"
