@@ -25,7 +25,7 @@ public class Login extends AppCompatActivity {
     private EditText userName;
     private EditText password;
     private TextView register;
-    Button loginb;
+    private Button loginb, guestb;
     private CheckBox checkBox;
 
     DatabaseReference logindatabaseReference ;
@@ -34,11 +34,12 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        Button loginb = findViewById(R.id.login);
         userName = (EditText) findViewById(R.id.usernameField);
         password = (EditText) findViewById(R.id.confirmPasswordField);
         register = (TextView) findViewById(R.id.registerTextview);
         checkBox = (CheckBox) findViewById(R.id.showPassword);
+        loginb = (Button) findViewById(R.id.loginButton);
+        guestb = (Button) findViewById(R.id.guestButton);
 
 
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -70,7 +71,17 @@ public class Login extends AppCompatActivity {
                 logIn(userName.getText().toString(), password.getText().toString());
             }
         });
+
+        guestb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Buy.class);
+                intent.putExtra("guestUsername", "guest");
+                startActivity(intent);
+            }
+        });
     }
+
 
     private void logIn(final String username,final String password) {
         logindatabaseReference=FirebaseDatabase.getInstance().getReference().child("User_Login");

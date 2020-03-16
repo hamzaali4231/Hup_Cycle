@@ -154,7 +154,7 @@
                 android:elevation="10dp">
 
                 <Button
-                    android:id="@+id/login"
+                    android:id="@+id/loginButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_ui"
@@ -173,6 +173,20 @@
                 android:elevation="5dp"
                 android:text="New User? Sign Up Here"
                 android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/guestButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/registerTextview"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/guest_bg_ui"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:text="Continue As Guest"
+                android:textColor="@color/darkblue" />
         </RelativeLayout>
     </ScrollView>
 </RelativeLayout>

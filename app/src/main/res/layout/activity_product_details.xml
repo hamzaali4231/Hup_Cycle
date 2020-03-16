@@ -112,7 +112,7 @@
                 android:inputType="textPersonName"
                 android:textColor="@color/textColour"
                 android:textColorHint="@color/textColour"
-                app:layout_constraintBottom_toTopOf="@+id/login"
+                app:layout_constraintBottom_toTopOf="@+id/loginButton"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:ignore="MissingConstraints" />

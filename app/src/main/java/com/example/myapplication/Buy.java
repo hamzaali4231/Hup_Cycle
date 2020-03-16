@@ -39,6 +39,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Objects;
 
 
 public class Buy extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
@@ -236,16 +237,18 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
                         productViewHolder.productPrice.setText("Price: £" + model.getPrice());
                         Picasso.get().load(model.getImage()).into(productViewHolder.imageView);
 
-                        productViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
+                        if (!Objects.equals(getIntent().getStringExtra("guestUsername"), "guest")){
+                            productViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
 
-                                Intent intent = new Intent(Buy.this, ProductDetailsActivity.class);
-                                intent.putExtra("loginUsername", getIntent().getStringExtra("loginUsername"));
-                                intent.putExtra("id",model.getId());
-                                startActivity(intent);
-                            }
-                        });
+                                    Intent intent = new Intent(Buy.this, ProductDetailsActivity.class);
+                                    intent.putExtra("loginUsername", getIntent().getStringExtra("loginUsername"));
+                                    intent.putExtra("id",model.getId());
+                                    startActivity(intent);
+                                }
+                            });
+                        }
 
                     }
 
