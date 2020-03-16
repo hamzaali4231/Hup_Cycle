@@ -140,7 +140,7 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
             Collections.sort(list, new Comparator<Products>() {
                 @Override
                 public int compare(Products item1, Products item2) {
-                    return Integer.compare(Integer.parseInt(item1.getPrice()), Integer.parseInt(item2.getPrice()));
+                    return Double.compare(Double.parseDouble(item1.getPrice()), Double.parseDouble(item2.getPrice()));
                 }
             });
 
@@ -149,7 +149,7 @@ public class Buy extends AppCompatActivity  implements NavigationView.OnNavigati
             Collections.sort(list, new Comparator<Products>() {
                 @Override
                 public int compare(Products item1, Products item2) {
-                    return Integer.compare(Integer.parseInt(item2.getPrice()), Integer.parseInt(item1.getPrice()));
+                    return Double.compare(Double.parseDouble(item2.getPrice()), Double.parseDouble(item1.getPrice()));
                 }
 
             });

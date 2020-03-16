@@ -30,7 +30,9 @@ public class PaymentMethodMenu extends AppCompatActivity {
         cardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cashPayment();
+                Intent in = new Intent(PaymentMethodMenu.this, CardPaymentActivity.class);
+                startActivity(in);
+
             }
         });
 
@@ -56,4 +58,5 @@ public class PaymentMethodMenu extends AppCompatActivity {
                 });
 
     }
+
 }
