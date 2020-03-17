@@ -31,11 +31,8 @@ import com.google.firebase.storage.UploadTask;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
 
 import androidx.annotation.NonNull;
@@ -255,10 +252,8 @@ public class Sell extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
 
                         if (task.isSuccessful()){
-                            Intent intent = new Intent(Sell.this, AdminCategory.class);
-                            startActivity(intent);
+                            finish();
                             loadingbar.dismiss();
-
                             Toast.makeText(Sell.this, "Product is added", Toast.LENGTH_SHORT).show();
                         }
 

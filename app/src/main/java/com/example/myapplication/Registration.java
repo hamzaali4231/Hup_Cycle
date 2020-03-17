@@ -1,6 +1,5 @@
 package com.example.myapplication;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
@@ -94,8 +93,7 @@ public class Registration extends AppCompatActivity {
                         databaseReference.child(username).child("password").setValue(password);
                         Toast.makeText(Registration.this,"User added",Toast.LENGTH_LONG).show();
                         Cleartxt();
-                        Intent intphto =new Intent(getApplicationContext(),Login.class);
-                        startActivity(intphto);
+                        finish();
                     }
                 }
 
@@ -109,6 +107,7 @@ public class Registration extends AppCompatActivity {
 
     private void Cleartxt(){
         userName.setText("");
+        userEmail.setText("");
         fPassword.setText("");
         confirmPassword.setText("");
     }
